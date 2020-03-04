@@ -8,3 +8,27 @@
 
 #include <stdio.h>
 #include "Business.h"
+
+Business::Business(){
+    
+}
+
+Business::~Business(){
+    
+}
+
+void Business::buildMovies(string movies){
+    
+}
+
+void Business::buildCustomers(string customers){
+    
+}
+
+void Business::buildTransactions(string transactions){
+    
+}
+
+void Business::executeTransactions(){
+    
+}
