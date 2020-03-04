@@ -20,11 +20,11 @@ Movie::Movie()
 
 Movie::Movie(char movieType, int stock, string director, string title, int releaseYear)
 {
-    this->movieType = movieType;
-    this->stock = stock;
-    this->director = director;
-    this->title = title;
-    this->releaseYear = releaseYear;
+    setMovieType(movieType);
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
 }
 
 Movie::~Movie(){}
@@ -79,31 +79,6 @@ int Movie::getReleaseYear( )const
     return releaseYear;
 }
 
-bool Movie::operator==(const Movie& m) const
-{
-    if ((movieType == m.movieType) && (stock == m.stock) && (director == m.director) && (title == m.title) && (releaseYear == m.releaseYear))
-    {
-        return true;
-    }
-    
-    return false;
-}
-
-bool Movie::operator!=(const Movie& m)const
-{
-    return !(*this == m);
-}
-
-bool Movie::operator>(const Movie& m) const // need to complete
-{
-    return false;
-}
-
-bool Movie::operator<(const Movie& m) const // need to complete
-{
-    return false;
-}
-
 ostream& operator<<(ostream &os, const Movie &other)
 {
     os << other.getMovieType() << ", ";
@@ -113,3 +88,4 @@ ostream& operator<<(ostream &os, const Movie &other)
     os << other.getReleaseYear() << endl;
     return os;
 }
+
