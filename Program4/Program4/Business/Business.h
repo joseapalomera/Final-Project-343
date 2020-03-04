@@ -10,6 +10,9 @@
 #define Business_h
 
 #include <queue>
+#include <string>
+
+#include "Transaction.h"
 using namespace std;
 
 class Business
@@ -26,6 +29,6 @@ public:
 private:
     //BinarySearchTree movies;
     //HashTable customers;
-    //queue<Transaction> list;
+    queue<Transaction> list;
 };
 #endif /* Business_h */

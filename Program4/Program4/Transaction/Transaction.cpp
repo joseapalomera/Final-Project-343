@@ -7,3 +7,30 @@
 //
 
 #include <stdio.h>
+#include "Transaction.h"
+
+Transaction::Transaction(){
+    setCustomerID(-1);
+}
+
+Transaction::~Transaction(){
+    
+}
+
+void Transaction::setCustomerID(int customerID){
+    this->customerID = customerID;
+}
+
+void Transaction::doTrans(){
+    
+}
+
+ostream& operator<<(ostream &out, const Transaction &t){
+    
+    return out;
+}
+
+void Transaction::print(ostream &out)const{
+    
+}
+
