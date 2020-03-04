@@ -24,26 +24,26 @@ public:
     ~Movie();
     
     // Setters
-    void setMovieType(char movieType);
-    void setStock(int stock);
-    void setDirector(string director);
-    void setTitle(string title);
-    void setReleaseYear(int releaseYear);
+    virtual void setMovieType(char movieType);
+    virtual void setStock(int stock);
+    virtual void setDirector(string director);
+    virtual void setTitle(string title);
+    virtual void setReleaseYear(int releaseYear);
     
     // Getters
-    char getMovieType() const;
-    int getStock() const;
-    string getDirector() const;
-    string getTitle() const;
-    int getReleaseYear( )const;
+    virtual char getMovieType() const;
+    virtual int getStock() const;
+    virtual string getDirector() const;
+    virtual string getTitle() const;
+    virtual int getReleaseYear( )const;
     
     // Operator overload
-    bool operator==(const Movie& m) const;
-    bool operator!=(const Movie& m)const;
-    bool operator>(const Movie& m) const;
-    bool operator<(const Movie& m) const;
+    virtual bool operator==(const Movie& m) const = 0;
+    virtual bool operator!=(const Movie& m)const = 0;
+    virtual bool operator>(const Movie& m) const = 0;
+    virtual bool operator<(const Movie& m) const = 0;
 
-private:
+protected:
     char movieType;
     int stock;
     string director;
@@ -52,3 +52,4 @@ private:
 };
 
 #endif /* Movie_h */
+

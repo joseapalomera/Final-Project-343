@@ -20,6 +20,7 @@
 		D39C87DE240F6D7600B2AEDA /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DD240F6D7600B2AEDA /* Inventory.cpp */; };
 		D39C87E0240F6D8B00B2AEDA /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DF240F6D8B00B2AEDA /* History.cpp */; };
 		D39C87E2240F6DA100B2AEDA /* Customer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E1240F6DA100B2AEDA /* Customer.cpp */; };
+		D39C87E5240F984000B2AEDA /* BSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E4240F984000B2AEDA /* BSTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,8 @@
 		D39C87DD240F6D7600B2AEDA /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
 		D39C87DF240F6D8B00B2AEDA /* History.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = History.cpp; sourceTree = "<group>"; };
 		D39C87E1240F6DA100B2AEDA /* Customer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Customer.cpp; sourceTree = "<group>"; };
+		D39C87E3240F982700B2AEDA /* BSTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTree.h; sourceTree = "<group>"; };
+		D39C87E4240F984000B2AEDA /* BSTree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BSTree.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				D39C87B9240F69D900B2AEDA /* Movie.h */,
-				D39C87BD240F6A1D00B2AEDA /* Classic.h */,
-				D39C87BE240F6A2600B2AEDA /* Comedy.h */,
-				D39C87BF240F6A3500B2AEDA /* Drama.h */,
 				D39C87CD240F6D0000B2AEDA /* Movie.cpp */,
+				D39C87BD240F6A1D00B2AEDA /* Classic.h */,
 				D39C87CF240F6D0C00B2AEDA /* Classic.cpp */,
+				D39C87BE240F6A2600B2AEDA /* Comedy.h */,
 				D39C87D1240F6D1700B2AEDA /* Comedy.cpp */,
+				D39C87BF240F6A3500B2AEDA /* Drama.h */,
 				D39C87D3240F6D2300B2AEDA /* Drama.cpp */,
 			);
 			path = Movie;
@@ -166,6 +169,8 @@
 		D39C87CA240F6C6C00B2AEDA /* BinarySearchTree */ = {
 			isa = PBXGroup;
 			children = (
+				D39C87E3240F982700B2AEDA /* BSTree.h */,
+				D39C87E4240F984000B2AEDA /* BSTree.cpp */,
 			);
 			path = BinarySearchTree;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39C87E5240F984000B2AEDA /* BSTree.cpp in Sources */,
 				D39C87CE240F6D0000B2AEDA /* Movie.cpp in Sources */,
 				D39C87B2240F667700B2AEDA /* main.cpp in Sources */,
 				D39C87E2240F6DA100B2AEDA /* Customer.cpp in Sources */,

@@ -7,3 +7,36 @@
 //
 
 #include <stdio.h>
+#include "Drama.h"
+
+Drama::Drama(int stock, string director, string title, int releaseYear)
+{
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+    setMovieType('D');
+}
+
+Drama::~Drama()
+{
+    
+}
+
+bool Drama::operator==(const Drama& d)const
+{
+    return true;
+}
+
+bool Drama::operator!=(const Drama& d)const
+{
+     return true;
+}
+bool Drama::operator>(const Drama& d) const
+{
+     return true;
+}
+bool Drama::operator<(const Drama& d) const
+{
+     return true;
+}

@@ -7,3 +7,36 @@
 //
 
 #include <stdio.h>
+#include "Comedy.h"
+
+Comedy::Comedy(int stock, string director, string title, int releaseYear)
+{
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+    setMovieType('F');
+}
+
+Comedy::~Comedy()
+{
+    
+}
+
+bool Comedy::operator==(const Comedy& f)const
+{
+    return true;
+}
+
+bool Comedy::operator!=(const Comedy& f)const
+{
+     return true;
+}
+bool Comedy::operator>(const Comedy& f) const
+{
+     return true;
+}
+bool Comedy::operator<(const Comedy& f) const
+{
+     return true;
+}
