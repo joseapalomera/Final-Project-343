@@ -47,18 +47,96 @@ int Classic::getReleaseMonth()const
 
 bool Classic::operator==(const Classic& c)const
 {
-    return true;
+    if(this->getDirector() == c.getDirector())
+    {
+        if(this->getTitle() == c.getTitle())
+        {
+            if(this->getReleaseYear() == c.getReleaseYear())
+            {
+                if(this->getReleaseMonth() == c.getReleaseMonth())
+                {
+                    if(this->getMajorActor() == c.getMajorActor())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    
+    return false;
 }
 
 bool Classic::operator!=(const Classic& c)const
 {
-     return true;
+     return !(*this == c);
 }
+
 bool Classic::operator>(const Classic& c) const
 {
-     return true;
+    if(this->getReleaseYear() > c.getReleaseYear())
+    {
+        return true;
+    }
+    else if(this->getReleaseYear() < c.getReleaseYear())
+    {
+        return false;
+    }
+    else
+    {
+        if(this->getReleaseMonth() > c.getReleaseMonth())
+        {
+            return true;
+        }
+        else if(this->getReleaseMonth() < c.getReleaseMonth())
+        {
+            return false;
+        }
+        else{
+            if(this->getMajorActor() > c.getMajorActor())
+            {
+                return true;
+            }
+            else if(this->getMajorActor() < c.getMajorActor())
+            {
+                return false;
+            }
+            
+            return false;
+        }
+    }
 }
 bool Classic::operator<(const Classic& c) const
 {
-     return true;
+     if(this->getReleaseYear() < c.getReleaseYear())
+     {
+         return true;
+     }
+     else if(this->getReleaseYear() > c.getReleaseYear())
+     {
+         return false;
+     }
+     else
+     {
+         if(this->getReleaseMonth() < c.getReleaseMonth())
+         {
+             return true;
+         }
+         else if(this->getReleaseMonth() > c.getReleaseMonth())
+         {
+             return false;
+         }
+         else{
+             if(this->getMajorActor() < c.getMajorActor())
+             {
+                 return true;
+             }
+             else if(this->getMajorActor() > c.getMajorActor())
+             {
+                 return false;
+             }
+             
+             return false;
+         }
+     }
 }

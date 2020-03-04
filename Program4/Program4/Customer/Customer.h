@@ -33,6 +33,9 @@ public:
     string getLastName()const;
     string getFirstName()const;
     
+    bool operator==(const Customer& cust)const;
+    bool operator!=(const Customer& cust)const;
+    
 private:
     int id;
     string lastName;

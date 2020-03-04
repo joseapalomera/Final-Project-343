@@ -65,6 +65,26 @@ bool Customer::addTransaction(Transaction t)
     return true;
 }
 
+bool Customer::operator==(const Customer &cust)const
+{
+    
+    if(this->getId() == cust.getId()){
+        if(this->getLastName() == cust.getLastName()){
+            if(this->getFirstName() == cust.getFirstName()){
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+bool Customer::operator!=(const Customer &cust)const
+{
+    return !(*this == cust);
+}
+
+
 ostream& operator<<(ostream &out, const Customer &cust)
 {
     

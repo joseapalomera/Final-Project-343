@@ -25,18 +25,74 @@ Comedy::~Comedy()
 
 bool Comedy::operator==(const Comedy& f)const
 {
-    return true;
+    if(this->getDirector() == f.getDirector())
+    {
+        if(this->getTitle() == f.getTitle())
+        {
+            if(this->getReleaseYear() == f.getReleaseYear())
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 bool Comedy::operator!=(const Comedy& f)const
 {
-     return true;
+     return !(*this == f);
 }
 bool Comedy::operator>(const Comedy& f) const
 {
-     return true;
+    if(this->getTitle() > f.getTitle())
+    {
+        return true;
+    }
+    else if(this->getTitle() < f.getTitle())
+    {
+        return false;
+    }
+    else
+    {
+        //If the titles of the Comedies are the same, we then check to see if the year is different
+        if(this->getReleaseYear() > f.getReleaseYear())
+        {
+            return true;
+        }
+        else if(this->getReleaseYear() < f.getReleaseYear())
+        {
+            return false;
+        }
+    
+        //If the function reaches here, this means the Comedies are equal
+        return false;
+    }
+    
 }
+
 bool Comedy::operator<(const Comedy& f) const
 {
-     return true;
+    if(this->getTitle() < f.getTitle())
+    {
+        return true;
+    }
+    else if(this->getTitle() > f.getTitle())
+    {
+        return false;
+    }
+    else
+    {
+        //If the titles of the Comedies are the same, we then check to see if the year is different
+        if(this->getReleaseYear() < f.getReleaseYear())
+        {
+            return true;
+        }
+        else if(this->getReleaseYear() > f.getReleaseYear())
+        {
+            return false;
+        }
+    
+        //If the function reaches here, this means the Comedies are equal
+        return false;
+    }
 }
