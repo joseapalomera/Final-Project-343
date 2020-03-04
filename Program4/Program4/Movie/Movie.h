@@ -36,12 +36,6 @@ public:
     virtual string getDirector() const;
     virtual string getTitle() const;
     virtual int getReleaseYear( )const;
-    
-    // Operator overload
-    virtual bool operator==(const Movie& m) const = 0;
-    virtual bool operator!=(const Movie& m)const = 0;
-    virtual bool operator>(const Movie& m) const = 0;
-    virtual bool operator<(const Movie& m) const = 0;
 
 protected:
     char movieType;

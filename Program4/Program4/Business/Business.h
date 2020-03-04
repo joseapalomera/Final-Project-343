@@ -12,7 +12,11 @@
 #include <queue>
 #include <string>
 
+#include "Movie.h"
+#include "Customer.h"
 #include "Transaction.h"
+#include "BSTree.h"
+
 using namespace std;
 
 class Business
@@ -27,7 +31,10 @@ public:
     void executeTransactions();
     
 private:
-    //BinarySearchTree movies;
+    BSTree comedies;
+    BSTree dramas;
+    BSTree classics;
+    
     //HashTable customers;
     queue<Transaction> list;
 };
