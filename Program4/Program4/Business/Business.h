@@ -11,8 +11,14 @@
 
 #include <queue>
 #include <string>
+#include <iostream>
+#include <fstream>
 
 #include "Movie.h"
+#include "Comedy.h"
+#include "Classic.h"
+#include "Drama.h"
+
 #include "Customer.h"
 #include "Transaction.h"
 #include "BSTree.h"
@@ -25,10 +31,12 @@ public:
     Business();
     ~Business();
     
-    void buildMovies(string movies);
+    void buildMovies(ifstream &file);
     void buildCustomers(string customers);
     void buildTransactions(string transactions);
     void executeTransactions();
+    
+    void viewMovies();
     
 private:
     BSTree comedies;

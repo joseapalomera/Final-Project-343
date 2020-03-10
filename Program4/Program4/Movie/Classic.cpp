@@ -9,30 +9,47 @@
 #include <stdio.h>
 #include "Classic.h"
 
-Classic::Classic(int stock, string director, string title, string majorActor, int releaseMonth, int releaseYear)
+Classic::Classic()
 {
-    setStock(stock);
-    setDirector(director);
-    setTitle(title);
-    setMajorActor(majorActor);
-    setReleaseMonth(releaseMonth);
-    setReleaseYear(releaseYear);
     setMovieType('C');
 }
+
 
 Classic::~Classic()
 {
     
 }
 
-void Classic::setMajorActor(string actor)
+void Classic::setData(ifstream &file)
 {
-    this->majorActor = actor;
+    int stock, releaseMonth, releaseYear;
+    string director, title, firstName, lastName;
+    
+    file.ignore(1);
+    file >> stock;
+    file.ignore(1);
+    getline(file, director, ',');
+    getline(file, title, ',');
+    file >> firstName >> lastName >> releaseMonth >> releaseYear;
+    
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setMajorActor(firstName, lastName);
+    setReleaseMonth(releaseMonth);
+    setReleaseYear(releaseYear);
+    
+}
+
+void Classic::setMajorActor(string firstName, string lastName)
+{
+    this->actorFirstName = firstName;
+    this->actorLastName = lastName;
 }
 
 string Classic::getMajorActor()const
 {
-    return this->majorActor;
+    return this->actorFirstName + this->actorLastName;
 }
 
 void Classic::setReleaseMonth(int month)
@@ -139,4 +156,17 @@ bool Classic::operator<(const Classic& c) const
              return false;
          }
      }
+}
+
+ostream& operator<<(ostream &os, const Classic &other)
+{
+    os << other.getMovieType() << ", ";
+    os << other.getStock() << ", ";
+    os << other.getDirector() << ", ";
+    os << other.getTitle() << ", ";
+    os << other.getMajorActor();
+    os << other.getReleaseMonth();
+    os << other.getReleaseYear() << endl;
+    
+    return os;
 }

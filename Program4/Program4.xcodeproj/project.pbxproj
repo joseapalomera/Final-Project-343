@@ -18,7 +18,6 @@
 		D39C87DA240F6D5B00B2AEDA /* Return.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87D9240F6D5B00B2AEDA /* Return.cpp */; };
 		D39C87DC240F6D6900B2AEDA /* Borrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DB240F6D6900B2AEDA /* Borrow.cpp */; };
 		D39C87DE240F6D7600B2AEDA /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DD240F6D7600B2AEDA /* Inventory.cpp */; };
-		D39C87E0240F6D8B00B2AEDA /* History.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DF240F6D8B00B2AEDA /* History.cpp */; };
 		D39C87E2240F6DA100B2AEDA /* Customer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E1240F6DA100B2AEDA /* Customer.cpp */; };
 		D39C87E5240F984000B2AEDA /* BSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E4240F984000B2AEDA /* BSTree.cpp */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,6 @@
 		D39C87C0240F6A4000B2AEDA /* Return.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Return.h; sourceTree = "<group>"; };
 		D39C87C1240F6A4A00B2AEDA /* Borrow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Borrow.h; sourceTree = "<group>"; };
 		D39C87C2240F6A5C00B2AEDA /* Inventory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Inventory.h; sourceTree = "<group>"; };
-		D39C87C3240F6A6900B2AEDA /* History.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
 		D39C87CB240F6CD900B2AEDA /* Business.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Business.cpp; sourceTree = "<group>"; };
 		D39C87CD240F6D0000B2AEDA /* Movie.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movie.cpp; sourceTree = "<group>"; };
 		D39C87CF240F6D0C00B2AEDA /* Classic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Classic.cpp; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 		D39C87D9240F6D5B00B2AEDA /* Return.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Return.cpp; sourceTree = "<group>"; };
 		D39C87DB240F6D6900B2AEDA /* Borrow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Borrow.cpp; sourceTree = "<group>"; };
 		D39C87DD240F6D7600B2AEDA /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
-		D39C87DF240F6D8B00B2AEDA /* History.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = History.cpp; sourceTree = "<group>"; };
 		D39C87E1240F6DA100B2AEDA /* Customer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Customer.cpp; sourceTree = "<group>"; };
 		D39C87E3240F982700B2AEDA /* BSTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTree.h; sourceTree = "<group>"; };
 		D39C87E4240F984000B2AEDA /* BSTree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BSTree.cpp; sourceTree = "<group>"; };
@@ -97,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				D39C87B1240F667700B2AEDA /* main.cpp */,
+				D39C87C2240F6A5C00B2AEDA /* Inventory.h */,
+				D39C87DD240F6D7600B2AEDA /* Inventory.cpp */,
 				D39C87C8240F6C4B00B2AEDA /* Business */,
 				D39C87C4240F6BCD00B2AEDA /* Movie */,
 				D39C87C7240F6C3700B2AEDA /* Customer */,
@@ -128,13 +127,9 @@
 				D39C87BB240F69FB00B2AEDA /* Transaction.h */,
 				D39C87C0240F6A4000B2AEDA /* Return.h */,
 				D39C87C1240F6A4A00B2AEDA /* Borrow.h */,
-				D39C87C2240F6A5C00B2AEDA /* Inventory.h */,
-				D39C87C3240F6A6900B2AEDA /* History.h */,
 				D39C87D7240F6D4F00B2AEDA /* Transaction.cpp */,
 				D39C87D9240F6D5B00B2AEDA /* Return.cpp */,
 				D39C87DB240F6D6900B2AEDA /* Borrow.cpp */,
-				D39C87DD240F6D7600B2AEDA /* Inventory.cpp */,
-				D39C87DF240F6D8B00B2AEDA /* History.cpp */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -240,7 +235,6 @@
 				D39C87D2240F6D1700B2AEDA /* Comedy.cpp in Sources */,
 				D39C87CC240F6CD900B2AEDA /* Business.cpp in Sources */,
 				D39C87D6240F6D3E00B2AEDA /* HashTable.cpp in Sources */,
-				D39C87E0240F6D8B00B2AEDA /* History.cpp in Sources */,
 				D39C87DE240F6D7600B2AEDA /* Inventory.cpp in Sources */,
 				D39C87D8240F6D4F00B2AEDA /* Transaction.cpp in Sources */,
 				D39C87D4240F6D2300B2AEDA /* Drama.cpp in Sources */,

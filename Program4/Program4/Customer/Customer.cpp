@@ -9,7 +9,8 @@
 #include <stdio.h>
 #include "Customer.h"
 
-Customer::Customer(){
+Customer::Customer()
+{
     setId(-1);
     setLastName("Last Name");
     setFirstName("First Name");
@@ -65,6 +66,20 @@ bool Customer::addTransaction(Transaction t)
     return true;
 }
 
+Customer& Customer::operator=(const Customer &c)
+{
+    if(c.getFirstName() == "" && c.getLastName() == "" && c.getId() == -1)
+    {
+        return *this;
+    }
+    
+    setFirstName(c.getFirstName());
+    setLastName(c.getLastName());
+    setId(c.getId());
+    
+    return *this;
+}
+
 bool Customer::operator==(const Customer &cust)const
 {
     
@@ -84,6 +99,14 @@ bool Customer::operator!=(const Customer &cust)const
     return !(*this == cust);
 }
 
+void Customer::viewHistory()
+{
+    for(int i = 0; i < history.size(); i++)
+    {
+        cout << history[i] << endl;
+    }
+    
+}
 
 ostream& operator<<(ostream &out, const Customer &cust)
 {

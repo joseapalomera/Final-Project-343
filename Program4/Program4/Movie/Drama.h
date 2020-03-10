@@ -10,15 +10,20 @@
 #define Drama_h
 
 #include <string>
+#include <fstream>
 #include "Movie.h"
 using namespace std;
 
 class Drama : public Movie
 {
+    
+    friend ostream& operator<<(ostream &os, const Drama &d);
+    
 public:
-    Drama(int stock, string director, string title, int releaseYear);
+    Drama();
     ~Drama();
     
+    void setData(ifstream &file);
     bool operator==(const Drama& d)const;
     bool operator!=(const Drama& d)const;
     bool operator>(const Drama& d) const;

@@ -7,7 +7,12 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "Business.h"
+#include "Inventory.h"
+#include "HashTable.h"
+#include "Customer.h"
+
 using namespace std;
 
 int main(int argc, const char * argv[]) {
@@ -23,6 +28,17 @@ int main(int argc, const char * argv[]) {
      */
     
     cout << "Testing..." << endl;
+    
+    ifstream movieFile("data4movies.txt");
+    if(!movieFile)
+    {
+        cout << "File could not be opened" << endl;
+        return 1;
+    }
+    
+    Business b;
+    b.buildMovies(movieFile);
+    b.viewMovies();
     
     return 0;
 }

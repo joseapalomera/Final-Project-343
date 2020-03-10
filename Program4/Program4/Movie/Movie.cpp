@@ -79,6 +79,24 @@ int Movie::getReleaseYear( )const
     return releaseYear;
 }
 
+bool Movie::increaseStock()
+{
+
+    stock++;
+    return true;
+}
+
+bool Movie::decreaseStock()
+{
+    if(stock == 0)
+    {
+        return false;
+    }
+    
+    stock--;
+    return true;
+}
+
 ostream& operator<<(ostream &os, const Movie &other)
 {
     os << other.getMovieType() << ", ";
