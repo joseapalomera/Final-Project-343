@@ -33,8 +33,11 @@ public:
     string getLastName()const;
     string getFirstName()const;
     
+    Customer& operator=(const Customer& c);
     bool operator==(const Customer& cust)const;
     bool operator!=(const Customer& cust)const;
+    
+    void viewHistory();
     
 private:
     int id;

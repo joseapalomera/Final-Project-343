@@ -36,6 +36,9 @@ public:
     virtual string getDirector() const;
     virtual string getTitle() const;
     virtual int getReleaseYear( )const;
+    
+    virtual bool increaseStock();
+    virtual bool decreaseStock();
 
 protected:
     char movieType;

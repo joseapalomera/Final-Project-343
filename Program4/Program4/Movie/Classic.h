@@ -10,17 +10,21 @@
 #define Classic_h
 
 #include <string>
+#include <fstream>
 #include "Movie.h"
 using namespace std;
 
 class Classic : public Movie
 {
+    friend ostream& operator<<(ostream &os, const Classic &c);
     
 public:
-    Classic(int stock , string director, string title, string majorActor, int releaseMonth, int releaseYear);
+    Classic();
     ~Classic();
     
-    void setMajorActor(string actor);
+    void setData(ifstream &file);
+    
+    void setMajorActor(string firstName, string lastName);
     string getMajorActor()const;
     
     void setReleaseMonth(int month);
@@ -31,8 +35,11 @@ public:
     bool operator>(const Classic& c) const;
     bool operator<(const Classic& c) const;
     
+    void display();
+    
 private:
-    string majorActor;
+    string actorFirstName;
+    string actorLastName;
     int releaseMonth;
     
 };

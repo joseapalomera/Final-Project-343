@@ -9,18 +9,29 @@
 #include <stdio.h>
 #include "Drama.h"
 
-Drama::Drama(int stock, string director, string title, int releaseYear)
+Drama::Drama()
 {
-    setStock(stock);
-    setDirector(director);
-    setTitle(title);
-    setReleaseYear(releaseYear);
     setMovieType('D');
 }
 
 Drama::~Drama()
 {
     
+}
+
+void Drama::setData(ifstream &file)
+{
+    file.ignore(1);
+    file >> stock;
+    file.ignore(1);
+    getline(file, director, ',');
+    getline(file, title, ',');
+    file >> releaseYear;
+    
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
 }
 
 bool Drama::operator==(const Drama& d)const
@@ -91,4 +102,15 @@ bool Drama::operator<(const Drama& d) const
          //If the function reaches here, this means the Comedies are equal
          return false;
      }
+}
+
+ostream& operator<<(ostream &os, const Drama &other)
+{
+    os << other.getMovieType() << ", ";
+    os << other.getStock() << ", ";
+    os << other.getDirector() << ", ";
+    os << other.getTitle() << ", ";
+    os << other.getReleaseYear() << endl;
+    
+    return os;
 }
