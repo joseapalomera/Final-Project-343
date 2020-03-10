@@ -19,7 +19,9 @@
 #include "Classic.h"
 #include "Drama.h"
 
+#include "HashTable.h"
 #include "Customer.h"
+
 #include "Transaction.h"
 #include "BSTree.h"
 
@@ -32,18 +34,19 @@ public:
     ~Business();
     
     void buildMovies(ifstream &file);
-    void buildCustomers(string customers);
+    void buildCustomers(ifstream &file);
     void buildTransactions(string transactions);
     void executeTransactions();
     
     void viewMovies();
-    
+    void viewCustomers();
 private:
     BSTree comedies;
     BSTree dramas;
     BSTree classics;
     
-    //HashTable customers;
+    HashTable customers;
     queue<Transaction> list;
+    
 };
 #endif /* Business_h */

@@ -15,24 +15,31 @@ using namespace std;
 
 class HashTable
 {
+    
+    static const int sizeOfTable = 100;
+    static const int hashTable = 101;
+    
 private:
+    
     struct item
     {
         Customer *c;
         item *next;
     };
     
-    int tableSize;
+    struct hashStore
+    {
+        item *head;
+    };
     
-    item* hashTable;
+    hashStore table[sizeOfTable];
     
 public:
     HashTable();
     ~HashTable();
-    int hash(int number);
     
-    void addCustomer(Customer *c);
-    void display();
+    bool addCustomer(Customer *c);
+    Customer* getCustomer(int custId);
     
 };
 #endif /* HashTable_h */
