@@ -11,14 +11,10 @@
 
 HashTable::HashTable()
 {
-    tableSize = 100;
-    
-    hashTable = new item[tableSize];
-    
-    for(int i = 1; i < sizeof(hashTable); i++)
+
+    for(int i = 1; i < sizeOfTable; i++)
     {
-        //hashTable[i] = new item;
-        hashTable[i].next = nullptr;
+        table[i].head = nullptr;
     }
 
 }
@@ -28,46 +24,67 @@ HashTable::~HashTable()
     
 }
 
-int HashTable::hash(int number)
+
+
+bool HashTable::addCustomer(Customer *cust)
 {
+    int index = cust->getId() % hashTable;
     
-    int hash = number;
-    int index;
+    item *temp = new item;
+    temp->c = cust;
+    temp->next = nullptr;
     
-    index = hash % tableSize;
-    
-    return index;
-}
-/*
-void HashTable::addCustomer(Customer *cust)
-{
-    int index = hash(cust->getId());
-    
-    if(hashTable[index].c == nullptr)
+    if(table[index].head == nullptr)
     {
-        hashTable[index].c = cust;
+        table[index].head = temp;
     }
     else
     {
-        item *ptr = &hashTable[index];
-        item *n = new item;
-        n->c = cust;
-        n->next = nullptr;
+        item *ptr = table[index].head;
+        
         while(ptr->next != nullptr)
         {
+            if(cust->getId() == ptr->c->getId())
+            {
+                cout << "Duplicate Exists: Customer " << cust->getId() << endl;
+                temp->c = nullptr;
+                delete temp;
+                temp = nullptr;
+                return false;
+            }
+            
             ptr = ptr->next;
         }
             
-        ptr->next = n;
+        ptr->next = temp;
+        
     }
+    
+    
+    return true;
 }
-*/
-void HashTable::display()
+    
+Customer* HashTable::getCustomer(int custId)
 {
-    for(int i = 0; i < sizeof(hashTable); i++)
+    int index = custId % hashTable;
+    
+    if(table[index].head == nullptr)
     {
-        cout << hashTable[i].c << endl;
+        return nullptr;
+    }
+    else{
+        item *cur = table[index].head;
+        
+        while(cur != nullptr)
+        {
+           if(cur->c->getId() == custId)
+           {
+               return cur->c;
+           }
+            
+            cur = cur->next;
+        }
     }
     
+    return nullptr;
 }
-    

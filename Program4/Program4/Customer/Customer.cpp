@@ -11,16 +11,7 @@
 
 Customer::Customer()
 {
-    setId(-1);
-    setLastName("Last Name");
-    setFirstName("First Name");
-}
 
-Customer::Customer(int id, string lastN, string firstN)
-{
-    setId(id);
-    setLastName(lastN);
-    setFirstName(firstN);
 }
 
 Customer::~Customer()
@@ -110,8 +101,7 @@ void Customer::viewHistory()
 
 ostream& operator<<(ostream &out, const Customer &cust)
 {
-    
-    out << cust.getFirstName() << " " << cust.getLastName();
-    out << " " << cust.getId() << ":" << endl;
+    out << "Id " << cust.getId() << ": "
+    << cust.getFirstName() << " " << cust.getLastName() << endl;
     return out;
 }

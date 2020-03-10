@@ -19,7 +19,6 @@ class Customer
 {
 public:
     Customer();
-    Customer(int id, string lastName, string firstName);
     ~Customer();
     
     bool addTransaction(Transaction t);

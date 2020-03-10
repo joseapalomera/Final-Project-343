@@ -18,21 +18,14 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     /*
-     Business b;
-     
-     b.buildMovies("data4movies.txt");
-     b.buildCustomers("data4customers.txt");
-     b.buildTransactions("data4commands.txt");
-     b.executeTransactions();
-     
+     Here we create the movie BSTs for the business
      */
-    
-    cout << "Testing..." << endl;
+    cout << "Testing insertion of movies:" << endl;
     
     ifstream movieFile("data4movies.txt");
     if(!movieFile)
     {
-        cout << "File could not be opened" << endl;
+        cout << "Movie file could not be opened" << endl;
         return 1;
     }
     
@@ -40,5 +33,18 @@ int main(int argc, const char * argv[]) {
     b.buildMovies(movieFile);
     b.viewMovies();
     
+    /*
+     Here we then create the HashTable that will contain the customers
+     */
+    ifstream customerFile("data4customers.txt");
+    if(!customerFile)
+    {
+        cout << "Customer file could not be opened" << endl;
+        return 1;
+    }
+    
+    cout << "Testing the HashTable: " << endl;
+    b.buildCustomers(customerFile);
+    b.viewCustomers();
     return 0;
 }

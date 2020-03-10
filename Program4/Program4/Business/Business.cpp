@@ -58,8 +58,26 @@ void Business::buildMovies(ifstream &file)
     }
 }
 
-void Business::buildCustomers(string customers)
+void Business::buildCustomers(ifstream &file)
 {
+    
+    string theLine;
+    
+    while(getline(file, theLine))
+    {
+        int theId;
+        string firstName, lastName;
+        
+        file >> theId >> lastName >> firstName;
+        
+        Customer *theCustomer = new Customer();
+        
+        theCustomer->setId(theId);
+        theCustomer->setLastName(lastName);
+        theCustomer->setFirstName(firstName);
+        
+        customers.addCustomer(theCustomer);
+    }
     
 }
 
@@ -84,4 +102,11 @@ void Business::viewMovies()
     cout << "Dramas: \n" << endl;
     dramas.Display();
     
+}
+
+void Business::viewCustomers()
+{
+    cout << "Customers: \n" << endl;
+    Customer *temp = customers.getCustomer(8888);
+    cout << *temp << endl;
 }
