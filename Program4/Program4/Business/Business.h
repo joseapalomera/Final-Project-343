@@ -9,21 +9,16 @@
 #ifndef Business_h
 #define Business_h
 
-#include <queue>
 #include <string>
 #include <iostream>
 #include <fstream>
-
 #include "Movie.h"
 #include "Comedy.h"
 #include "Classic.h"
 #include "Drama.h"
-
 #include "HashTable.h"
 #include "Customer.h"
-
 #include "Transaction.h"
-#include "BSTree.h"
 #include "Inventory.h"
 
 using namespace std;
@@ -31,22 +26,17 @@ using namespace std;
 class Business
 {
 public:
-    Business(string movieFile);
+    Business(string const &movieData);
     ~Business();
     
-    void buildCustomers(ifstream &file);
-    void buildTransactions(string transactions);
-    void executeTransactions();
+    void buildCustomers(string const &customerData);
+    void executeCommands(string const &commandData);
     
     void viewMovies();
     void viewCustomers();
 private:
-    //BSTree comedies;
-    //BSTree dramas;
-    //BSTree classics;
-    
     HashTable customers;
-    Inventory theInventory;
+    Inventory movies;
     
 };
 #endif /* Business_h */
