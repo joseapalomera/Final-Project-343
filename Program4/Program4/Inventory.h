@@ -12,29 +12,22 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <fstream>
-
 #include "Movie.h"
 #include "Classic.h"
 #include "Comedy.h"
 #include "Drama.h"
-#include "BSTree.h"
-
 using namespace std;
 
 class Inventory
 {
-private:
-    vector<Classic> myClassics;
-    vector<Comedy> myComedies;
-    vector<Drama> myDramas;
-    
 public:
-    
     Inventory();
+    Inventory(string const &fileName);
     ~Inventory();
     
-    void buildInventory(ifstream &theFile);
+    void buildInventory(string const &fileName);
     
     void viewClassics();
     void viewComedies();
@@ -42,10 +35,13 @@ public:
     
     void viewInventory();
     
-    /*
-    Classic* getClassic(int month, int year, string title); //Come back to see if we return reference
-    Comedy* getComedy(string title, int year);
-    Drama* getDrama(string director, string title);
-    */
+    bool findClassicMovie(int month, int year, string title, Classic &selection);
+    bool findComedyMovie(string title, int year, Comedy &selection);
+    bool findDramaMovie(string director, string title, Drama &selection);
+    
+private:
+    vector<Classic> classics;
+    vector<Comedy> comedies;
+    vector<Drama> dramas;
 };
 #endif /* Inventory_h */
