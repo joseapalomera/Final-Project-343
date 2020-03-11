@@ -163,7 +163,7 @@ ostream& operator<<(ostream &os, const Classic &other)
     os << other.getStock() << ", ";
     os << other.getDirector() << ", ";
     os << other.getTitle() << ", ";
-    os << other.getMajorActor();
+    os << other.getMajorActor() << " ";
     os << other.getReleaseMonth() << " ";
     os << other.getReleaseYear() << endl;
     

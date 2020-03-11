@@ -38,8 +38,7 @@ public:
     void display();
     
 private:
-    string actorFirstName;
-    string actorLastName;
+    string majorActor;
     int releaseMonth;
     
 };
