@@ -7,44 +7,27 @@
 //
 
 #include <iostream>
-#include <fstream>
 #include "Business.h"
-#include "Inventory.h"
-#include "HashTable.h"
-#include "Customer.h"
+
+#include "Movie.h"
+#include "Comedy.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    /*
-     Here we create the movie BSTs for the business
-     */
+    
+    //Here we create the movie BSTs for the business
+     
     cout << "Testing insertion of movies:" << endl;
     
-    ifstream movieFile("data4movies.txt");
-    if(!movieFile)
-    {
-        cout << "Movie file could not be opened" << endl;
-        return 1;
-    }
-    
-    Business b;
-    b.buildMovies(movieFile);
+    Business b("data4movies.txt");
     b.viewMovies();
-    
-    /*
-     Here we then create the HashTable that will contain the customers
-     */
-    ifstream customerFile("data4customers.txt");
-    if(!customerFile)
-    {
-        cout << "Customer file could not be opened" << endl;
-        return 1;
-    }
-    
-    cout << "Testing the HashTable: " << endl;
-    b.buildCustomers(customerFile);
+
+    b.buildCustomers("data4customers.txt");
     b.viewCustomers();
-    return 0;
+    
+    
+        return 0;
 }
+//Extra space before title and director

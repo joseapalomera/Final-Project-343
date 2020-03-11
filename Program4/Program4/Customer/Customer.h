@@ -10,22 +10,23 @@
 #define Customer_h
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include "Transaction.h"
-using namespace std;
 
+using namespace std;
 class Customer
 {
 public:
     Customer();
-    Customer(int id, string lastName, string firstName);
     ~Customer();
     
     bool addTransaction(Transaction *t);
     friend ostream& operator<<(ostream &out, const Customer &cust);
     
-    void setId(int cusId);
+    bool setData(ifstream &file);
+    bool setId(int cusId);
     void setLastName(string lastN);
     void setFirstName(string firstN);
     
@@ -43,7 +44,7 @@ private:
     int id;
     string lastName;
     string firstName;
-    vector<Transaction> history;
+    vector<Transaction*> history;
 };
 
 #endif /* Customer_h */
