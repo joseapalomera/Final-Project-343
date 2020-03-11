@@ -13,15 +13,16 @@
 #include <string>
 #include <vector>
 #include "Transaction.h"
-
 using namespace std;
+
 class Customer
 {
 public:
     Customer();
+    Customer(int id, string lastName, string firstName);
     ~Customer();
     
-    bool addTransaction(Transaction t);
+    bool addTransaction(Transaction *t);
     friend ostream& operator<<(ostream &out, const Customer &cust);
     
     void setId(int cusId);
