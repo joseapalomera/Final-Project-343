@@ -23,8 +23,9 @@ void Comedy::setData(ifstream &file)
 {
     file.ignore(1);
     file >> stock;
-    file.ignore(1);
+    file.ignore(2);
     getline(file, director, ',');
+    file.ignore(1);
     getline(file, title, ',');
     file >> releaseYear;
     
@@ -111,8 +112,8 @@ bool Comedy::operator<(const Comedy& f) const
 ostream& operator<<(ostream &os, const Comedy &other)
 {
     os << other.getMovieType() << ", ";
-    os << other.getStock() << ",";
-    os << other.getDirector() << ",";
+    os << other.getStock() << ", ";
+    os << other.getDirector() << ", ";
     os << other.getTitle() << ", ";
     os << other.getReleaseYear() << endl;
     

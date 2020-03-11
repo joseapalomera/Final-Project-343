@@ -27,8 +27,9 @@ void Classic::setData(ifstream &file)
     
     file.ignore(1);
     file >> stock;
-    file.ignore(1);
+    file.ignore(2);
     getline(file, director, ',');
+    file.ignore(1);
     getline(file, title, ',');
     file >> firstName >> lastName >> releaseMonth >> releaseYear;
     
@@ -42,13 +43,12 @@ void Classic::setData(ifstream &file)
 
 void Classic::setMajorActor(string firstName, string lastName)
 {
-    this->actorFirstName = firstName;
-    this->actorLastName = lastName;
+    this->majorActor = firstName + " " + lastName;
 }
 
 string Classic::getMajorActor()const
 {
-    return this->actorFirstName + " " +  this->actorLastName + " ";
+    return this->majorActor;
 }
 
 void Classic::setReleaseMonth(int month)
@@ -160,8 +160,8 @@ bool Classic::operator<(const Classic& c) const
 ostream& operator<<(ostream &os, const Classic &other)
 {
     os << other.getMovieType() << ", ";
-    os << other.getStock() << ",";
-    os << other.getDirector() << ",";
+    os << other.getStock() << ", ";
+    os << other.getDirector() << ", ";
     os << other.getTitle() << ", ";
     os << other.getMajorActor();
     os << other.getReleaseMonth() << " ";
