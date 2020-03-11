@@ -24,16 +24,16 @@
 
 #include "Transaction.h"
 #include "BSTree.h"
+#include "Inventory.h"
 
 using namespace std;
 
 class Business
 {
 public:
-    Business();
+    Business(string movieFile);
     ~Business();
     
-    void buildMovies(ifstream &file);
     void buildCustomers(ifstream &file);
     void buildTransactions(string transactions);
     void executeTransactions();
@@ -41,12 +41,12 @@ public:
     void viewMovies();
     void viewCustomers();
 private:
-    BSTree comedies;
-    BSTree dramas;
-    BSTree classics;
+    //BSTree comedies;
+    //BSTree dramas;
+    //BSTree classics;
     
     HashTable customers;
-    queue<Transaction> list;
+    Inventory theInventory;
     
 };
 #endif /* Business_h */
