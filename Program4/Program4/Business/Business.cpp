@@ -9,58 +9,56 @@
 #include <stdio.h>
 #include "Business.h"
 
-Business::Business(string const &movieData)
+Business::Business(string const &movieFile)
 {
-    // building the movie store inventory
-    movies.buildInventory(movieData);
+    theInventory.buildInventory(movieFile);
 }
 
-Business::~Business(){}
+Business::~Business()
+{
+    
+}
 
 void Business::buildCustomers(string const &customerData)
 {
-    // Creating file and checking its validity
-    ifstream customersFile(customerData);
-    if (!customersFile)
+    ifstream file(customerData);
+    
+    if(!file)
     {
         cout << "ERROR: Invalid customer input file" << endl;
         return;
     }
     
-    string theLine;
+    Customer *theCustomer = nullptr;
     
-    // Looping throught each line in the customer data file
-    while(getline(customersFile, theLine))
+    while(!file.eof())
     {
-        int userID;
-        string firstName, lastName;
         
-        // Reading in information from the file
-        customersFile >> userID >> lastName >> firstName;
+        theCustomer = new Customer();
         
-        // Create and add customer to hash table if the userID is valid
-        if (userID > 0 && userID < 10000)
+        if(theCustomer->setData(file))
         {
-            Customer *theCustomer = new Customer();
-        
-            theCustomer->setId(userID);
-            theCustomer->setLastName(lastName);
-            theCustomer->setFirstName(firstName);
-            customers.addCustomer(theCustomer);
+            if(!customers.addCustomer(theCustomer))
+            {
+                delete theCustomer;
+                theCustomer = nullptr;
+            }
+            theCustomer = nullptr;
         }
-        // Outputs error message for invalid indentification number
         else
         {
-            cout << "ERROR: Invalid customer identification number" << endl;
+            delete theCustomer;
+            theCustomer = nullptr;
         }
+        
     }
+    
 }
 
 void Business::executeCommands(string const &commandData)
 {
-    // Creating file and checking its validity
     ifstream commandsFile(commandData);
-    if (!commandsFile)
+    if(!commandsFile)
     {
         cout << "ERROR: Invalid command input file" << endl;
         return;
@@ -69,14 +67,15 @@ void Business::executeCommands(string const &commandData)
 
 void Business::viewMovies()
 {
+    
     cout << endl;
     cout << "Movies:" << endl;
-    movies.viewInventory();
+    theInventory.viewInventory();
 }
 
 void Business::viewCustomers()
 {
-    cout << "Customers:" << endl;
-    Customer *temp = customers.getCustomer(8888);
-    cout << *temp << endl;
+    cout << "Customers: \n" << endl;
+    //Customer *temp = customers.getCustomer(8888);
+    //cout << *temp << endl;
 }

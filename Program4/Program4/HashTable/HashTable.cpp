@@ -12,7 +12,7 @@
 HashTable::HashTable()
 {
 
-    for(int i = 1; i < sizeOfTable; i++)
+    for(int i = 0; i < sizeOfTable; i++)
     {
         table[i].head = nullptr;
     }
@@ -23,8 +23,6 @@ HashTable::~HashTable()
 {
     
 }
-
-
 
 bool HashTable::addCustomer(Customer *cust)
 {

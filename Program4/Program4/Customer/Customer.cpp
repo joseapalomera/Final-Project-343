@@ -9,24 +9,45 @@
 #include <stdio.h>
 #include "Customer.h"
 
-Customer::Customer(){
-    setId(0);
-    setLastName("Last");
-    setFirstName("First");
+Customer::Customer()
+{
+
 }
 
-Customer::Customer(int id, string lastName, string firstName)
+Customer::~Customer()
 {
-    setId(id);
-    setLastName(lastName);
-    setFirstName(firstName);
+    
 }
 
-Customer::~Customer(){}
-
-void Customer::setId(int cusId)
+bool Customer::setData(ifstream &file)
 {
-    this->id = cusId;
+    int id;
+    string firstN, lastN;
+    
+    file >> id >> lastN >> firstN;
+    if(setId(id) != true)
+    {
+        cout << "ERROR: Customer not created" << endl;
+        return false;
+    }
+    
+    setLastName(lastN);
+    setFirstName(firstN);
+    
+    return true;
+    
+}
+
+bool Customer::setId(int cusId)
+{
+    if(cusId > 999 && cusId < 10000)
+    {
+        this->id = cusId;
+        return true;
+    }
+    
+    cout << "Invalid ID: " << cusId << endl;
+    return false;
 }
 
 void Customer::setLastName(string lastN)
@@ -56,13 +77,24 @@ string Customer::getFirstName()const
 
 bool Customer::addTransaction(Transaction *t)
 {
-    if (t == NULL)
-    {
-        return false;
-    }
-    history.push_back(*t);
+    
+    history.push_back(t);
     
     return true;
+}
+
+Customer& Customer::operator=(const Customer &c)
+{
+    if(c.getFirstName() == "" && c.getLastName() == "" && c.getId() == -1)
+    {
+        return *this;
+    }
+    
+    setFirstName(c.getFirstName());
+    setLastName(c.getLastName());
+    setId(c.getId());
+    
+    return *this;
 }
 
 bool Customer::operator==(const Customer &cust)const
@@ -84,11 +116,18 @@ bool Customer::operator!=(const Customer &cust)const
     return !(*this == cust);
 }
 
+void Customer::viewHistory()
+{
+    for(int i = 0; i < history.size(); i++)
+    {
+        cout << history[i] << endl;
+    }
+    
+}
 
 ostream& operator<<(ostream &out, const Customer &cust)
 {
-    
-    out << cust.getFirstName() << " " << cust.getLastName();
-    out << " " << cust.getId() << ":" << endl;
+    out << "Id " << cust.getId() << ": "
+    << cust.getFirstName() << " " << cust.getLastName() << endl;
     return out;
 }
