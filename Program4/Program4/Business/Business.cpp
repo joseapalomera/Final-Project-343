@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include "Business.h"
 
-Business::Business()
+Business::Business(string movieFile)
 {
-    
+    theInventory.buildInventory(movieFile);
 }
 
 Business::~Business()
@@ -19,48 +19,8 @@ Business::~Business()
     
 }
 
-void Business::buildMovies(ifstream &file)
-{
-    while(!file.eof())
-    {
-            
-        char type;
-        
-        file >> type;
-        
-        Classic *c = new Classic();
-        Comedy *f = new Comedy();
-        Drama *d = new Drama();
-        
-        switch(type)
-        {
-            case 'C':
-                c->setData(file);
-                classics.Insert(c);
-                break;
-                
-            case 'F':
-                f->setData(file);
-                comedies.Insert(f);
-                break;
-                
-            case 'D':
-                d->setData(file);
-                dramas.Insert(d);
-                break;
-                
-            default:
-                cout << "Invalid Movie Type: " << type << endl;
-                file.ignore(1000000, '\n');
-                break;
-        }
-        
-    }
-}
-
 void Business::buildCustomers(ifstream &file)
 {
-    
     string theLine;
     
     while(getline(file, theLine))
@@ -75,8 +35,8 @@ void Business::buildCustomers(ifstream &file)
         theCustomer->setId(theId);
         theCustomer->setLastName(lastName);
         theCustomer->setFirstName(firstName);
-        
         customers.addCustomer(theCustomer);
+        
     }
     
 }
@@ -93,15 +53,9 @@ void Business::executeTransactions()
 
 void Business::viewMovies()
 {
-    cout << "Classics: \n" << endl;
-    classics.Display();
     
-    cout << "Comedies: \n" << endl;
-    comedies.Display();
-    
-    cout << "Dramas: \n" << endl;
-    dramas.Display();
-    
+    cout << endl;
+    theInventory.viewInventory();
 }
 
 void Business::viewCustomers()
