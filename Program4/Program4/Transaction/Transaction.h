@@ -10,16 +10,17 @@
 #define Transaction_h
 
 #include <iostream>
-
+#include <string>
+#include "Customer.h"
+#include "Movie.h"
 using namespace std;
 
 class Transaction
 {
 public:
     Transaction();
+    Transaction(Customer *customer, Movie *movie);
     ~Transaction();
-    
-    void setCustomerID(int customerID);
     
     virtual void doTrans();
     
@@ -27,8 +28,8 @@ public:
     virtual void print(ostream &out)const;
     
 private:
-    int customerID;
-    //Movie movie;
+    Customer *customer;
+    Movie *movie;
 };
 
 #endif /* Transaction_h */

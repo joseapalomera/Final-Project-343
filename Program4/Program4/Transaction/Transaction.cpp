@@ -9,25 +9,21 @@
 #include <stdio.h>
 #include "Transaction.h"
 
-Transaction::Transaction()
+Transaction::Transaction(){}
+
+Transaction::Transaction(Customer *client, Movie *selection)
 {
-    setCustomerID(-1);
+    customer = client;
+    movie = selection;
 }
 
 Transaction::~Transaction()
 {
-    
+    customer = NULL;
+    movie = NULL;
 }
 
-void Transaction::setCustomerID(int customerID)
-{
-    this->customerID = customerID;
-}
-
-void Transaction::doTrans()
-{
-    
-}
+void Transaction::doTrans(){}
 
 ostream& operator<<(ostream &out, const Transaction &t)
 {
@@ -39,4 +35,3 @@ void Transaction::print(ostream &out)const
 {
     
 }
-
