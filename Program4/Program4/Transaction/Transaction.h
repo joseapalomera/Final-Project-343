@@ -11,16 +11,19 @@
 
 #include <iostream>
 #include <string>
-#include "Customer.h"
 #include "Movie.h"
+
 using namespace std;
 
 class Transaction
 {
 public:
     Transaction();
-    Transaction(Customer *customer, Movie *movie);
+    Transaction(int customerID, Movie *movie);
     ~Transaction();
+    
+    void setCustomerID(int customerID);
+    int getCustomerID()const;
     
     virtual void doTrans();
     
@@ -28,7 +31,7 @@ public:
     virtual void print(ostream &out)const;
     
 private:
-    Customer *customer;
+    int customerID;
     Movie *movie;
 };
 
