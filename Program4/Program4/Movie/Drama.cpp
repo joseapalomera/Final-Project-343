@@ -107,8 +107,8 @@ bool Drama::operator<(const Drama& d) const
 ostream& operator<<(ostream &os, const Drama &other)
 {
     os << other.getMovieType() << ", ";
-    os << other.getStock() << ", ";
-    os << other.getDirector() << ", ";
+    os << other.getStock() << ",";
+    os << other.getDirector() << ",";
     os << other.getTitle() << ", ";
     os << other.getReleaseYear() << endl;
     

@@ -111,8 +111,8 @@ bool Comedy::operator<(const Comedy& f) const
 ostream& operator<<(ostream &os, const Comedy &other)
 {
     os << other.getMovieType() << ", ";
-    os << other.getStock() << ", ";
-    os << other.getDirector() << ", ";
+    os << other.getStock() << ",";
+    os << other.getDirector() << ",";
     os << other.getTitle() << ", ";
     os << other.getReleaseYear() << endl;
     
