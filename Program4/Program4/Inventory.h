@@ -36,12 +36,14 @@ public:
     void viewInventory();
     
     bool findClassicMovie(int month, int year, string title, Classic &selection);
-    bool findComedyMovie(string title, int year, Comedy &selection);
+    bool findComedyMovie(string title, int releaseYear, Comedy &selection);
     bool findDramaMovie(string director, string title, Drama &selection);
     
 private:
     vector<Classic> classics;
     vector<Comedy> comedies;
     vector<Drama> dramas;
+    
+    void DeleteMovies();
 };
 #endif /* Inventory_h */

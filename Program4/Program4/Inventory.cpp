@@ -11,7 +11,7 @@
 
 Inventory::Inventory()
 {
-    
+    buildInventory("data4movies.txt");
 }
 
 Inventory::Inventory(string const &fileName)
@@ -21,7 +21,7 @@ Inventory::Inventory(string const &fileName)
 
 Inventory::~Inventory()
 {
-    
+    DeleteMovies();
 }
 
 void Inventory::buildInventory(string const &fileName)
@@ -115,17 +115,103 @@ void Inventory::viewInventory()
     viewDramas();
 }
 
-bool Inventory::findClassicMovie(int month, int year, string title, Classic &selection)
+// HAS WEIRD CASE
+bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic &selection)
 {
+    // Searching through the classic movie vector to find the desired movie
+    for (int i = 0; i < classics.size(); i++)
+    {
+        // If we locate the desired movie
+        if (releaseMonth == classics[i].getReleaseMonth() && releaseYear == classics[i].getReleaseYear() && majorActor == classics[i].getMajorActor())
+        {
+            // Return false if it is out of stock
+            if (classics[i].getStock() == 0)
+            {
+                cout << "ERROR: Movie out of stock" << endl;
+                // FIND OUT IF THERE IS ANOTHER ONE
+                return false;
+            }
+            
+            // In stock so we send the desired movie over and return true
+            selection = classics[i];
+            return true;
+        }
+    }
+    // No such movie in the database
+    cout << "ERROR: Movie not found in database" << endl;
     return false;
 }
 
-bool Inventory::findComedyMovie(string title, int year, Comedy &selection)
+bool Inventory::findComedyMovie(string title, int releaseYear, Comedy &selection)
 {
+    // Searching through the comedy movie vector to find the desired movie
+    for (int i = 0; i < comedies.size(); i++)
+    {
+        // If we locate the desired movie
+        if (title == comedies[i].getTitle() && releaseYear == comedies[i].getReleaseYear())
+        {
+            // Return false if it is out of stock
+            if (comedies[i].getStock() == 0)
+            {
+                cout << "ERROR: Movie out of stock" << endl;
+                return false;
+            }
+            
+            // In stock so we send the desired movie over and return true
+            selection = comedies[i];
+            return true;
+        }
+    }
+    // No such movie in the database
+    cout << "ERROR: Movie not found in database" << endl;
     return false;
 }
 
 bool Inventory::findDramaMovie(string director, string title, Drama &selection)
 {
+    // Searching through the drama movie vector to find the desired movie
+    for (int i = 0; i < dramas.size(); i++)
+    {
+        // If we locate the desired movie
+        if (director == dramas[i].getDirector() && title == dramas[i].getTitle())
+        {
+            // Return false if it is out of stock
+            if (dramas[i].getStock() == 0)
+            {
+                cout << "ERROR: Movie out of stock" << endl;
+                return false;
+            }
+            
+            // In stock so we send the desired movie over and return true
+            selection = dramas[i];
+            return true;
+        }
+    }
+    // No such movie in the database
+    cout << "ERROR: Movie not found in database" << endl;
     return false;
+}
+
+void Inventory::DeleteMovies()
+{
+//    for (int i = 0; i < classics.size(); i++)
+//    {
+//        Classic *movie = classics[i];
+//        delete movie;
+//        movie == NULL;
+//    }
+//
+//    for (int i = 0; i < comedies.size(); i++)
+//    {
+//        Comedy *movie = comedies[i];
+//        delete movie;
+//        movie == NULL;
+//    }
+//
+//    for (int i = 0; i < dramas.size(); i++)
+//    {
+//        Classic *movie = dramas[i];
+//        delete movie;
+//        movie == NULL;
+//    }
 }
