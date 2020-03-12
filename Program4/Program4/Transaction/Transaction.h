@@ -22,17 +22,23 @@ public:
     Transaction(int customerID, Movie *movie);
     ~Transaction();
     
-    void setCustomerID(int customerID);
-    int getCustomerID()const;
+    virtual void setCustomerID(int customerID);
+    virtual int getCustomerID()const;
+    
+    virtual void setTransactionType(char type);
+    virtual char getTransactionType()const;
+    
+    virtual void setMovie(Movie *movie);
+    virtual Movie* getMovie()const;
     
     virtual void doTrans();
     
-    friend ostream& operator<<(ostream &out, const Transaction &t);
-    virtual void print(ostream &out)const;
+    virtual void display();
     
-private:
+protected:
     int customerID;
     Movie *movie;
+    char transactionType;
 };
 
 #endif /* Transaction_h */

@@ -9,5 +9,16 @@
 #ifndef Borrow_h
 #define Borrow_h
 
+#include "Transaction.h"
 
+using namespace std;
+
+class Borrow : public Transaction
+{
+public:
+    Borrow();
+    Borrow(int customerID, Movie *movie);
+    ~Borrow();
+    
+};
 #endif /* Borrow_h */
