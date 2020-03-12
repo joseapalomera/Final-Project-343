@@ -25,11 +25,6 @@ Transaction::Transaction(int customerID, Movie *selection)
     movie = selection;
 }
 
-void Transaction::doTrans()
-{
-    
-}
-
 void Transaction::setCustomerID(int customerID)
 {
     this->customerID = customerID;
@@ -40,13 +35,32 @@ int Transaction::getCustomerID()const
     return this->customerID;
 }
 
-ostream& operator<<(ostream &out, const Transaction &t)
+void Transaction::setTransactionType(char type)
 {
-    
-    return out;
+    this->transactionType = type;
 }
 
-void Transaction::print(ostream &out)const
+char Transaction::getTransactionType()const
+{
+    return this->transactionType;
+}
+
+void Transaction::setMovie(Movie *movie)
+{
+    this->movie = movie;
+}
+
+Movie* Transaction::getMovie()const
+{
+    return this->movie;
+}
+
+void Transaction::doTrans()
+{
+    
+}
+
+void Transaction::display()
 {
     
 }

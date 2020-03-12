@@ -7,3 +7,20 @@
 //
 
 #include <stdio.h>
+#include "Borrow.h"
+
+Borrow::Borrow()
+{
+    
+}
+
+Borrow::Borrow(int customerID, Movie *movie)
+{
+    setCustomerID(customerID);
+    setMovie(movie);
+}
+
+Borrow::~Borrow()
+{
+    
+}

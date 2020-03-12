@@ -9,5 +9,16 @@
 #ifndef Return_h
 #define Return_h
 
+#include "Transaction.h"
 
+using namespace std;
+
+class Return : public Transaction
+{
+public:
+    Return();
+    Return(int customerID, Movie *movie);
+    ~Return();
+    
+};
 #endif /* Return_h */

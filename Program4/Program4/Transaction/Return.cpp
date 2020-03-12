@@ -7,3 +7,20 @@
 //
 
 #include <stdio.h>
+#include "Return.h"
+
+Return::Return()
+{
+    
+}
+
+Return::Return(int customerID, Movie *movie)
+{
+    setCustomerID(customerID);
+    setMovie(movie);
+}
+
+Return::~Return()
+{
+    
+}
