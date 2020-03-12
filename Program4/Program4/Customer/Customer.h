@@ -38,7 +38,9 @@ public:
     bool operator==(const Customer& cust)const;
     bool operator!=(const Customer& cust)const;
     
-    void viewHistory();
+    bool returnIsValid(Transaction const *borrowing) const;
+    bool borrowIsValid(Transaction const *returning) const;
+    void viewHistory() const;
     
 private:
     int id;

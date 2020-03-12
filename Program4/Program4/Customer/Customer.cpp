@@ -25,9 +25,9 @@ bool Customer::setData(ifstream &file)
     string firstN, lastN;
     
     file >> id >> lastN >> firstN;
+    
     if(setId(id) != true)
     {
-        cout << "ERROR: Customer not created" << endl;
         return false;
     }
     
@@ -46,7 +46,7 @@ bool Customer::setId(int cusId)
         return true;
     }
     
-    cout << "Invalid ID: " << cusId << endl;
+    cout << "ERROR: Invalid ID " << cusId << ". Customer not created" << endl;
     return false;
 }
 
@@ -116,18 +116,59 @@ bool Customer::operator!=(const Customer &cust)const
     return !(*this == cust);
 }
 
-void Customer::viewHistory()
+bool Customer::returnIsValid(Transaction const *borrowing) const
 {
-    for(int i = 0; i < history.size(); i++)
+    int numBorrowed = 0;
+    int numReturned = 0;
+    
+    for (int i = 0; i < history.size(); i++)
+    {
+        // transcation is ==
+            // numReturned++;
+        // transcation movie is == and its a borrow
+            // numBorrowed++;
+    }
+    
+    if ((numBorrowed + 1) == numReturned)
+    {
+        return true;
+    }
+    
+    return false;
+}
+
+bool Customer::borrowIsValid(Transaction const *returning) const
+{
+    int numBorrowed = 0;
+    int numReturned = 0;
+    
+    for (int i = 0; i < history.size(); i++)
+    {
+        // transcation is ==
+            // numBorrowed++;
+        // transcation movie is == and its a return
+            // numReturned++;
+    }
+    
+    if (numBorrowed == numReturned)
+    {
+        return true;
+    }
+    
+    return false;
+}
+
+void Customer::viewHistory() const
+{
+    for (int i = 0; i < history.size(); i++)
     {
         cout << history[i] << endl;
     }
-    
 }
 
 ostream& operator<<(ostream &out, const Customer &cust)
 {
-    out << "Id " << cust.getId() << ": "
+    out << "ID " << cust.getId() << ": "
     << cust.getFirstName() << " " << cust.getLastName() << endl;
     return out;
 }
