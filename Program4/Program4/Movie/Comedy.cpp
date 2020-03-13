@@ -14,6 +14,14 @@ Comedy::Comedy()
     setMovieType('F');
 }
 
+Comedy::Comedy(int stock, string director, string title, int releaseYear)
+{
+    setMovieType('F');
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+}
+
 Comedy::~Comedy()
 {
     
@@ -21,9 +29,6 @@ Comedy::~Comedy()
 
 void Comedy::setData(ifstream &file)
 {
-    int stock, releaseYear;
-    string director, title;
-    
     file.ignore(1);
     file >> stock;
     file.ignore(2);

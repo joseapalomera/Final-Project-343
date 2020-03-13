@@ -14,6 +14,14 @@ Drama::Drama()
     setMovieType('D');
 }
 
+Drama::Drama(int stock, string director, string title, int releaseYear)
+{
+    setMovieType('D');
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+}
+
 Drama::~Drama()
 {
     

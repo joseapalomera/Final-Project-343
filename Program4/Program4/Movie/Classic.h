@@ -20,6 +20,7 @@ class Classic : public Movie
     
 public:
     Classic();
+    Classic(string majorActor, int releaseMonth, int stock, string director, string title, int releaseYear);
     ~Classic();
     
     void setData(ifstream &file);

@@ -14,6 +14,16 @@ Classic::Classic()
     setMovieType('C');
 }
 
+Classic::Classic(string majorActor, int releaseMonth, int stock, string director, string title, int releaseYear)
+{
+    setMovieType('C');
+    this->majorActor = majorActor;
+    this->releaseMonth = releaseMonth;
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+}
 
 Classic::~Classic()
 {
