@@ -16,6 +16,7 @@ using namespace std;
 class Borrow : public Transaction
 {
 public:
+    //Constructors
     Borrow();
     Borrow(int customerID, Movie *movie);
     ~Borrow();

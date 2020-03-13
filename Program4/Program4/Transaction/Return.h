@@ -16,6 +16,7 @@ using namespace std;
 class Return : public Transaction
 {
 public:
+    //Constructors
     Return();
     Return(int customerID, Movie *movie);
     ~Return();
