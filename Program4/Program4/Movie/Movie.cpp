@@ -11,16 +11,31 @@
 
 Movie::Movie()
 {
-    this->movieType = 0;
-    this->stock = -1;
-    this->director = "";
-    this->title = "";
-    this->releaseYear = -1;
+    setMovieType('M');
 }
 
 Movie::Movie(char movieType, int stock, string director, string title, int releaseYear)
 {
     setMovieType(movieType);
+    setStock(stock);
+    setDirector(director);
+    setTitle(title);
+    setReleaseYear(releaseYear);
+}
+
+void Movie::setData(ifstream &file)
+{
+    int stock, releaseYear;
+    string director, title;
+    
+    file.ignore(1);
+    file >> stock;
+    file.ignore(2);
+    getline(file, director, ',');
+    file.ignore(1);
+    getline(file, title, ',');
+    file >> releaseYear;
+    
     setStock(stock);
     setDirector(director);
     setTitle(title);
@@ -54,6 +69,23 @@ void Movie::setReleaseYear(int releaseYear)
     this->releaseYear = releaseYear;
 }
 
+//Method implemented here so that the Classic object
+//can overload it
+void Movie::setMajorActor(string majorActor){}
+
+bool Movie::setReleaseMonth(int month)
+{
+    //If the month is out of the range
+    if(month < 1 || month >= 13)
+    {
+        //Inform the business of the invalid month
+        cout << "ERROR: Invalid month" << endl;
+        return false;
+    }
+    
+    return true;
+}
+
 char Movie::getMovieType() const
 {
     return movieType;
@@ -79,31 +111,45 @@ int Movie::getReleaseYear( )const
     return releaseYear;
 }
 
+string Movie::getMajorActor()const
+{
+    return NULL;
+}
+
+int Movie::getReleaseMonth()const
+{
+    return NULL;
+}
+
 bool Movie::increaseStock()
 {
-
+    //Increases the stock of a movie by 1
     stock++;
     return true;
 }
 
 bool Movie::decreaseStock()
 {
+    //Checks to see if the movie is able to decrease stock
     if(stock == 0)
     {
         return false;
     }
     
+    //If yes, then the stock decreases by 1
     stock--;
     return true;
 }
 
-ostream& operator<<(ostream &os, const Movie &other)
+Movie* Movie::operator=(const Movie &c)
 {
-    os << other.getMovieType() << ", ";
-    os << other.getStock() << ", ";
-    os << other.getDirector() << ", ";
-    os << other.getTitle() << ", ";
-    os << other.getReleaseYear() << endl;
-    return os;
+    return this;
+}
+
+void Movie::display()const
+{
+    //Displays the movie's credentials
+    cout << getMovieType() << ", " << getStock() << ", " << getDirector()
+    << ", " << getTitle() << ", " << getReleaseYear() << endl;
 }
 

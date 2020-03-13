@@ -17,6 +17,7 @@ Comedy::Comedy()
 Comedy::Comedy(int stock, string director, string title, int releaseYear)
 {
     setMovieType('F');
+    setStock(stock);
     setDirector(director);
     setTitle(title);
     setReleaseYear(releaseYear);
@@ -29,6 +30,9 @@ Comedy::~Comedy()
 
 void Comedy::setData(ifstream &file)
 {
+    int stock, releaseYear;
+    string director, title;
+    
     file.ignore(1);
     file >> stock;
     file.ignore(2);
@@ -43,87 +47,108 @@ void Comedy::setData(ifstream &file)
     setReleaseYear(releaseYear);
 }
 
-bool Comedy::operator==(const Comedy& f)const
+bool Comedy::operator==(const Movie& fun)const
 {
-    if(this->getDirector() == f.getDirector())
+    //If both stocks are the same
+    if(getStock() == fun.getStock())
     {
-        if(this->getTitle() == f.getTitle())
+        //If both directors are the same
+        if(getDirector().compare(fun.getDirector()) == 0)
         {
-            if(this->getReleaseYear() == f.getReleaseYear())
+            //If both titles are the same
+            if(getTitle().compare(fun.getTitle()) == 0)
             {
-                return true;
+                //If both release years are the same
+                if(getReleaseYear() == fun.getReleaseYear())
+                {
+                    //Return true if all the variables are equal
+                    return true;
+                }
             }
         }
     }
+    //Return false if one of the variables are different
     return false;
 }
 
-bool Comedy::operator!=(const Comedy& f)const
+bool Comedy::operator!=(const Movie& fun)const
 {
-     return !(*this == f);
-}
-bool Comedy::operator>(const Comedy& f) const
-{
-    if(this->getTitle() > f.getTitle())
-    {
-        return true;
-    }
-    else if(this->getTitle() < f.getTitle())
-    {
-        return false;
-    }
-    else
-    {
-        //If the titles of the Comedies are the same, we then check to see if the year is different
-        if(this->getReleaseYear() > f.getReleaseYear())
-        {
-            return true;
-        }
-        else if(this->getReleaseYear() < f.getReleaseYear())
-        {
-            return false;
-        }
-    
-        //If the function reaches here, this means the Comedies are equal
-        return false;
-    }
-    
+     return !(*this == fun);
 }
 
-bool Comedy::operator<(const Comedy& f) const
+bool Comedy::operator>(const Movie& fun) const
 {
-    if(this->getTitle() < f.getTitle())
+    //If the current title is greater than the other movie
+    if(getTitle().compare(fun.getTitle()) > 0)
     {
+        //Return true
         return true;
     }
-    else if(this->getTitle() > f.getTitle())
+    //Otherwise, check to see if the current title is equal to the other movie
+    else if(getTitle().compare(fun.getTitle()) == 0)
     {
-        return false;
+        //If so, check to see if the current release year is greater than the other movie
+        if(getReleaseYear() > fun.getReleaseYear())
+        {
+            //If so, return true;
+            return true;
+        }
+        else
+        {
+            //Return false if the current release year is not greater
+            return false;
+        }
     }
     else
     {
-        //If the titles of the Comedies are the same, we then check to see if the year is different
-        if(this->getReleaseYear() < f.getReleaseYear())
-        {
-            return true;
-        }
-        else if(this->getReleaseYear() > f.getReleaseYear())
-        {
-            return false;
-        }
-    
-        //If the function reaches here, this means the Comedies are equal
+        //Return false if the current title is less than the other movie
         return false;
     }
 }
 
-ostream& operator<<(ostream &os, const Comedy &other)
+bool Comedy::operator<(const Movie& fun) const
 {
-    os << other.getMovieType() << ", ";
-    os << other.getStock() << ", ";
-    os << other.getDirector() << ", ";
-    os << other.getTitle() << ", ";
-    os << other.getReleaseYear() << endl;
+    //If the current title is less than the other movie
+    if(getTitle().compare(fun.getTitle()) < 0)
+    {
+        //Return true
+        return true;
+    }
+    //Otherwise, check to see if the current title is equal to the other movie
+    else if(getTitle().compare(fun.getTitle()) == 0)
+    {
+        //If so, check to see if the current release year is less than the other movie
+        if(getReleaseYear() < fun.getReleaseYear())
+        {
+            //If so, return true;
+            return true;
+        }
+        else
+        {
+            //Return false if the current release year is not less
+            return false;
+        }
+    }
+    else
+    {
+        //Return false if the current title is greater than the other movie
+        return false;
+    }
+}
+
+Movie* Comedy::operator=(const Movie &f)
+{
+    setStock(f.getStock());
+    setDirector(f.getDirector());
+    setTitle(f.getTitle());
+    setReleaseYear(f.getReleaseYear());
     
-    return os;
+    return this;
+}
+
+void Comedy::display()
+{
+    //Displays the credentials of a Comedy movie
+    cout << getMovieType() << ", " << getStock() << ", "
+    << getDirector() << ", " << getTitle() << ", " << getReleaseYear() << endl;
 }

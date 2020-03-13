@@ -19,7 +19,6 @@
 		D39C87DC240F6D6900B2AEDA /* Borrow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DB240F6D6900B2AEDA /* Borrow.cpp */; };
 		D39C87DE240F6D7600B2AEDA /* Inventory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87DD240F6D7600B2AEDA /* Inventory.cpp */; };
 		D39C87E2240F6DA100B2AEDA /* Customer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E1240F6DA100B2AEDA /* Customer.cpp */; };
-		D39C87E5240F984000B2AEDA /* BSTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D39C87E4240F984000B2AEDA /* BSTree.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,8 +58,6 @@
 		D39C87DB240F6D6900B2AEDA /* Borrow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Borrow.cpp; sourceTree = "<group>"; };
 		D39C87DD240F6D7600B2AEDA /* Inventory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inventory.cpp; sourceTree = "<group>"; };
 		D39C87E1240F6DA100B2AEDA /* Customer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Customer.cpp; sourceTree = "<group>"; };
-		D39C87E3240F982700B2AEDA /* BSTree.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTree.h; sourceTree = "<group>"; };
-		D39C87E4240F984000B2AEDA /* BSTree.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BSTree.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D338D5BD2418C5FB0067DDBE /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				D39C87C2240F6A5C00B2AEDA /* Inventory.h */,
+				D39C87DD240F6D7600B2AEDA /* Inventory.cpp */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
 		D39C87A5240F667600B2AEDA = {
 			isa = PBXGroup;
 			children = (
@@ -94,13 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				D39C87B1240F667700B2AEDA /* main.cpp */,
-				D39C87C2240F6A5C00B2AEDA /* Inventory.h */,
-				D39C87DD240F6D7600B2AEDA /* Inventory.cpp */,
+				D338D5BD2418C5FB0067DDBE /* Inventory */,
 				D39C87C8240F6C4B00B2AEDA /* Business */,
 				D39C87C4240F6BCD00B2AEDA /* Movie */,
 				D39C87C7240F6C3700B2AEDA /* Customer */,
 				D39C87C6240F6C1100B2AEDA /* Transaction */,
-				D39C87CA240F6C6C00B2AEDA /* BinarySearchTree */,
 				D39C87C9240F6C5B00B2AEDA /* HashTable */,
 			);
 			path = Program4;
@@ -161,15 +165,6 @@
 			path = HashTable;
 			sourceTree = "<group>";
 		};
-		D39C87CA240F6C6C00B2AEDA /* BinarySearchTree */ = {
-			isa = PBXGroup;
-			children = (
-				D39C87E3240F982700B2AEDA /* BSTree.h */,
-				D39C87E4240F984000B2AEDA /* BSTree.cpp */,
-			);
-			path = BinarySearchTree;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,7 +222,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D39C87E5240F984000B2AEDA /* BSTree.cpp in Sources */,
 				D39C87CE240F6D0000B2AEDA /* Movie.cpp in Sources */,
 				D39C87B2240F667700B2AEDA /* main.cpp in Sources */,
 				D39C87E2240F6DA100B2AEDA /* Customer.cpp in Sources */,

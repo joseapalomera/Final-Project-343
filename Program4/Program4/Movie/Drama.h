@@ -16,17 +16,22 @@ using namespace std;
 
 class Drama : public Movie
 {
-    friend ostream& operator<<(ostream &os, const Drama &d);
-    
 public:
+    //Constructors
     Drama();
     Drama(int stock, string director, string title, int releaseYear);
     ~Drama();
     
+    //Setter
     void setData(ifstream &file);
-    bool operator==(const Drama& d)const;
-    bool operator!=(const Drama& d)const;
-    bool operator>(const Drama& d) const;
-    bool operator<(const Drama& d) const;
+    
+    void display();
+    
+    //Operator overloads
+    bool operator==(const Movie& d) const;
+    bool operator!=(const Movie& d) const;
+    bool operator>(const Movie& d) const;
+    bool operator<(const Movie& d) const;
+    Movie* operator=(const Movie& d);
 };
 #endif /* Drama_h */

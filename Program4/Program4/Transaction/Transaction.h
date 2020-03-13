@@ -18,22 +18,23 @@ using namespace std;
 class Transaction
 {
 public:
+    //Constructors
     Transaction();
     Transaction(int customerID, Movie *movie);
     ~Transaction();
     
+    //Setters
     virtual void setCustomerID(int customerID);
-    virtual int getCustomerID()const;
-    
     virtual void setTransactionType(char type);
-    virtual char getTransactionType()const;
-    
     virtual void setMovie(Movie *movie);
+    
+    //Getters
+    virtual int getCustomerID()const;
+    virtual char getTransactionType()const;
     virtual Movie* getMovie()const;
     
-    virtual void doTrans();
-    
-    virtual void display();
+    virtual void doTrans(); //Method that executes the transaction
+    virtual void display(); //Method that displays the transaction
     
 protected:
     int customerID;

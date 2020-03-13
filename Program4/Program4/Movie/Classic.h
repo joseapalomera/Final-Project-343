@@ -16,29 +16,33 @@ using namespace std;
 
 class Classic : public Movie
 {
-    friend ostream& operator<<(ostream &os, const Classic &c);
-    
 public:
+    //Constructors
     Classic();
-    Classic(string majorActor, int releaseMonth, int stock, string director, string title, int releaseYear);
+    Classic(int stock, string director, string title, string majorActor,int releaseMonth, int releaseYear);
     ~Classic();
     
+    //Setters
     void setData(ifstream &file);
+    void setMajorActor(string majorActor);
+    bool setReleaseMonth(int month);
     
-    void setMajorActor(string firstName, string lastName);
+    //Getters
     string getMajorActor()const;
-    
-    void setReleaseMonth(int month);
     int getReleaseMonth()const;
-    
-    bool operator==(const Classic& c)const;
-    bool operator!=(const Classic& c)const;
-    bool operator>(const Classic& c) const;
-    bool operator<(const Classic& c) const;
     
     void display();
     
+    //Operator overloads
+    bool operator==(const Movie& c) const;
+    bool operator!=(const Movie& c) const;
+    bool operator>(const Movie& c) const;
+    bool operator<(const Movie& c) const;
+    Movie* operator=(const Movie& c);
+    
 private:
+    //Variables that store the additional information a Classic
+    //movie object has
     string majorActor;
     int releaseMonth;
     

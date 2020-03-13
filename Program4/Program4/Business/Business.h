@@ -36,7 +36,6 @@ public:
     void executeCommands(string const &commandData);
     
     void viewMovies();
-    void viewCustomers();
 private:
     
     HashTable customers;

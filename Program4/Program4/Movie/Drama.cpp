@@ -17,6 +17,7 @@ Drama::Drama()
 Drama::Drama(int stock, string director, string title, int releaseYear)
 {
     setMovieType('D');
+    setStock(stock);
     setDirector(director);
     setTitle(title);
     setReleaseYear(releaseYear);
@@ -46,83 +47,120 @@ void Drama::setData(ifstream &file)
     setReleaseYear(releaseYear);
 }
 
-bool Drama::operator==(const Drama& d)const
+bool Drama::operator==(const Movie& dram)const
 {
-    if(this->getDirector() == d.getDirector())
+    //If both stocks are the same
+    if(getStock() == dram.getStock())
     {
-        if(this->getTitle() == d.getTitle())
+         //If both directors are the same
+        if(getDirector().compare(dram.getDirector()) == 0)
         {
-            if(this->getReleaseYear() == d.getReleaseYear())
+            //If both titles are the same
+            if(getTitle().compare(dram.getTitle()) == 0)
             {
-                return true;
+                //If both release years are the same
+                if(getReleaseYear() == dram.getReleaseYear())
+                {
+                     //Return true if all the variables are equal
+                    return true;
+                }
             }
         }
     }
-    
+    //Return false if one of the variables are different
     return false;
 }
 
-bool Drama::operator!=(const Drama& d)const
+bool Drama::operator!=(const Movie& dram)const
 {
-     return !(*this == d);
+     return !(*this == dram);
 }
-bool Drama::operator>(const Drama& d) const
+
+bool Drama::operator>(const Movie& dram) const
 {
-    if(this->getDirector() > d.getDirector())
+    //If the current director is greater than the other movie
+    if(getDirector().compare(dram.getDirector()) > 0)
     {
+        //Return true
         return true;
     }
-    else if(this->getDirector() < d.getDirector()){
-        return false;
-    }
-    else{
-        //If the directors of the Dramas are the same, we then check to see if the title is different
-        if(this->getTitle() > d.getTitle())
+    //Otherwise, check to see if the current director is equal to the other movie
+    else if(getDirector().compare(dram.getDirector()) == 0)
+    {
+        //If so, check to see if the current title is greater than the other movie
+        if(getTitle().compare(dram.getTitle()) > 0)
         {
+            //If so, return true;
             return true;
         }
-        else if(this->getTitle() < d.getTitle())
+        //If the the current title equals the other title
+        else if(getTitle().compare(dram.getTitle()) == 0)
         {
+            //Return false
             return false;
         }
-        
-        //If the function reaches here, this means the Dramas are equal
+        else
+        {
+            //Return false if the current title is less than the other one
+            return false;
+        }
+    }
+    else
+    {
+        //Return false if the current director is less than the other one
         return false;
     }
 }
-bool Drama::operator<(const Drama& d) const
+
+bool Drama::operator<(const Movie& dram) const
 {
-     if(this->getDirector() < d.getDirector())
+    //If the current director is less than the other movie
+     if(getDirector().compare(dram.getDirector()) < 0)
      {
+         //Return true
          return true;
      }
-     else if(this->getDirector() > d.getDirector())
+    //Otherwise, check to see if the current director is equal to the other movie
+     else if(getDirector().compare(dram.getDirector()) == 0)
      {
-         return false;
+         //If so, check to see if the current title is less than the other movie
+         if(getTitle().compare(dram.getTitle()) < 0)
+         {
+             //If so, return true;
+             return true;
+         }
+         //If the the current title equals the other title
+         else if(getTitle().compare(dram.getTitle()) == 0)
+         {
+             //Return false
+             return false;
+         }
+         else
+         {
+             //Return false if the current title is greater than the other one
+             return false;
+         }
      }
-     else{
-         //If the directors of the Dramas are the same, we then check to see if the title is different
-         if(this->getTitle() < d.getTitle())
-        {
-            return true;
-        }
-        else if(this->getTitle() > d.getTitle())
-        {
-            return false;
-        }
-     
-         //If the function reaches here, this means the Comedies are equal
+     else
+     {
+         //Return false if the current director is greater than the other one
          return false;
      }
 }
 
-ostream& operator<<(ostream &os, const Drama &other)
+Movie* Drama::operator=(const Movie &d)
 {
-    os << other.getMovieType() << ", ";
-    os << other.getStock() << ", ";
-    os << other.getDirector() << ", ";
-    os << other.getTitle() << ", ";
-    os << other.getReleaseYear() << endl;
+    setStock(d.getStock());
+    setDirector(d.getDirector());
+    setTitle(d.getTitle());
+    setReleaseYear(d.getReleaseYear());
     
-    return os;
+    return this;
+}
+
+void Drama::display()
+{
+    //Displays the credentials of a Drama movie
+    cout << getMovieType() << ", " << getStock() << ", "
+    << getDirector() << ", " << getTitle() << ", " << getReleaseYear() << endl;
 }

@@ -15,19 +15,23 @@
 using namespace std;
 
 class Comedy : public Movie
-{
-    friend ostream& operator<<(ostream &os, const Comedy *f);
-    
+{    
 public:
+    //Constructors
     Comedy();
     Comedy(int stock, string director, string title, int releaseYear);
     ~Comedy();
     
+    //Setter
     void setData(ifstream &file);
-    bool operator==(const Comedy& f)const;
-    bool operator!=(const Comedy& f)const;
-    bool operator>(const Comedy& f) const;
-    bool operator<(const Comedy& f) const;
     
+    void display();
+    
+    //Operator overloads
+    bool operator==(const Movie& d) const;
+    bool operator!=(const Movie& d) const;
+    bool operator>(const Movie& d) const;
+    bool operator<(const Movie& d) const;
+    Movie* operator=(const Movie& d);
 };
 #endif /* Comedy_h */
