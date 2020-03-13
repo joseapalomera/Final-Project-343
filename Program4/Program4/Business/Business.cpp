@@ -9,56 +9,56 @@
 #include <stdio.h>
 #include "Business.h"
 
-Business::Business(string const &movieFile)
+Business::Business(string const &movieData)
 {
-    theInventory.buildInventory(movieFile);
+    // building the movie store inventory
+    movies.buildInventory(movieData);
 }
 
-Business::~Business()
-{
-    
-}
+Business::~Business(){}
 
 void Business::buildCustomers(string const &customerData)
 {
-    ifstream file(customerData);
-    
-    if(!file)
+    // Creating file and checking its validity
+    ifstream customersFile(customerData);
+    if (!customersFile)
     {
         cout << "ERROR: Invalid customer input file" << endl;
         return;
     }
     
-    Customer *theCustomer = nullptr;
+    Customer *theCustomer = NULL;
     
-    while(!file.eof())
+    // Looping through the customer data file
+    while (!customersFile.eof())
     {
-        
         theCustomer = new Customer();
         
-        if(theCustomer->setData(file))
+        // Attempting to create and add customer to the database
+        if (theCustomer->setData(customersFile))
         {
-            if(!customers.addCustomer(theCustomer))
+            // If customer can't be added, deallocate the data accordingly
+            if (!customers.addCustomer(theCustomer))
             {
                 delete theCustomer;
-                theCustomer = nullptr;
+                theCustomer = NULL;
             }
-            theCustomer = nullptr;
+            theCustomer = NULL;
         }
+        // Deallocating the data accordingly
         else
         {
             delete theCustomer;
-            theCustomer = nullptr;
+            theCustomer = NULL;
         }
-        
     }
-    
 }
 
 void Business::executeCommands(string const &commandData)
 {
+    // Creating file and checking its validity
     ifstream commandsFile(commandData);
-    if(!commandsFile)
+    if (!commandsFile)
     {
         cout << "ERROR: Invalid command input file" << endl;
         return;
@@ -66,38 +66,67 @@ void Business::executeCommands(string const &commandData)
     
     string currentLine;
     
-    //Looping through each line in the commands data file
-    while(getline(commandsFile, currentLine))
+    // Looping throught each line in the commands data file
+    while(getline(commandsFile, currentLine)) // SKIPPING OVER FIRST LINE
     {
-        //Store in information of the first char
-        char commandType,  movieType;
+        // store in information of the first char
+        char commandType, movieType;
         commandsFile >> commandType;
         
         switch(commandType)
         {
             case 'B':
-                // read in account number
+            {
+                int customerID;
+                commandsFile >> customerID;
                 
-                // attempt to get account first, if invalid just continue;
+                // attempting to get the desired Customer object for the transaction
+                Customer *customer = NULL;
+                customer = customers.getCustomer(customerID);
                 
-                // reading in D for DVD IGNORE
+                // continue to next iteration of loop if customer isn't in database
+                if (customer == NULL)
+                {
+                    continue;
+                }
+                
+                // reading in the char for DVD which we can ignored
+                char format;
+                commandsFile >> format;
+                
                 // store category type
                 commandsFile >> movieType;
                 
                 switch(movieType)
                 {
                     case 'C':
-                    
-                        // store release month, year, major actor
-                        // Classic temp;
-                        // call findClassicMovie with given information
+                    {
+                        int releaseMonth, releaseYear;
+                        commandsFile >> releaseMonth >> releaseYear;
+                        
+                        string firstName, lastName;
+                        commandsFile >> firstName >> lastName;
+                        
+                        string majorActor = firstName + " " + lastName;
+                        
+                        Classic movie;
+                        bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, movie);
+                        if (validMovie)
+                        {
+                            Movie valid = movie;
+                            //Movie *tryBorrowing = valid;
+                            // Borrow newTransaction(tryBorriwn);
+                
                         // if it returned true then make Borrow object
+                        
+                            // call method in customer to check valid borrow
                             // if borrow is valid then add to history of customer
                         // else error message should already be outputted
+                        }
                         break;
-                    
+                    }
                     case 'D':
-                    
+                    {
                         // store release month, year, major actor
                         // Drama temp;
                         // call findDramaMovie with given information
@@ -105,9 +134,9 @@ void Business::executeCommands(string const &commandData)
                             // if borrow is valid then add to history of customer
                         // else error message should already be outputted
                         break;
-                    
+                    }
                     case 'F':
-                    
+                    {
                         // store release month, year, major actor
                         // Comedu temp;
                         // call findComedyMovie with given information
@@ -115,101 +144,120 @@ void Business::executeCommands(string const &commandData)
                             // if borrow is valid then add to history of customer
                         // else error message should already be outputted
                         break;
-                    
+                    }
                     default:
                     {
-                        
-                    }
-                    
                     // else invalid category
                         // cout << "ERROR: Invalid command type" << endl;
-                    
+                    }
                 }
-                
                 break;
-                
+            }
             case 'R':
-               
+            {
                 // read in account number
-                               
+                
                 // attempt to get account first, if invalid just continue;
-                    
+                
                 // reading in D for DVD IGNORE
                 // store category type
                 commandsFile >> movieType;
-                               
+                
                 switch(movieType)
                 {
                     case 'C':
+                    {
+                    int releaseMonth, releaseYear;
+                    commandsFile >> releaseMonth >> releaseYear;
                     
-                    // store release month, year, major actor
-                    // Classic temp;
-                    // call findClassicMovie with given information
+                    string firstName, lastName;
+                    commandsFile >> firstName >> lastName;
+                    
+                    string majorActor = firstName + " " + lastName;
+                    
+                    Classic movie;
+                    bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, movie);
+                    if (validMovie)
+                    {
+                        Movie valid = movie;
                     // if it returned true then make Return object
-                    // if return is valid then add to history of customer
+                        // if return is valid then add to history of customer
                     // else error message should already be outputted
-                    break;
-                    
+                    }
+                        break;
+                    }
                     case 'D':
-                    
+                    {
                     // store release month, year, major actor
                     // Drama temp;
                     // call findDramaMovie with given information
                     // if it returned true then make Return object
-                    // if Return is valid then add to history of customer
+                        // if Return is valid then add to history of customer
                     // else error message should already be outputted
-                    break;
-                    
+                        break;
+                    }
                     case 'F':
-                    
+                    {
                     // store release month, year, major actor
                     // Comedy temp;
                     // call findComedyMovie with given information
                     // if it returned true then make Return object
-                    // if return is valid then add to history of customer
+                        // if return is valid then add to history of customer
                     // else error message should already be outputted
-                    break;
-                    
+                        break;
+                    }
                     default:
                     {
                     // else invalid category
-                    // cout << "ERROR: Invalid command type" << endl;
+                        // cout << "ERROR: Invalid command type" << endl;
                     }
                 }
                 break;
-                
+            }
             case 'I':
-                
+            {
                 viewMovies();
                 break;
-                
+            }
             case 'H':
+            {
                 // store id of the customer
-                // if not in our parameters just ERROR: and continue;
-                // attempt to get account first, if invalid just after outputting error continue;
-                // else just call view history of pulled customer object
-                break;
+                int customerID;
+                commandsFile >> customerID;
                 
+                // attempting to get the desired Customer object for the transaction
+                Customer *customer = NULL;
+                customer = customers.getCustomer(customerID);
+                
+                // continue to next iteration of loop if customer isn't in database
+                if (customer == NULL)
+                {
+                    continue;
+                }
+                // output history for customer if the the customer is in the system
+                else
+                {
+                    customer->viewHistory();
+                }
+                break;
+            }
             default:
             {
-                
+                cout << "ERROR: Invalid command type " << commandType << endl;
             }
-                
         }
     }
 }
 
 void Business::viewMovies()
 {
-    
-    cout << endl;
-    cout << "Movies:" << endl;
-    theInventory.viewInventory();
+    cout << "Outputting the store's current movies:" << endl;
+    movies.viewInventory();
 }
 
 void Business::viewCustomers()
 {
-    cout << "Customers: \n" << endl;
-    //Customer *temp = customers.getCustomer(8888);
-    //cout << *temp << endl;
+    cout << "Outputting the store's current customers:" << endl;
+    Customer *temp = customers.getCustomer(8888);
+    cout << *temp << endl;
 }
