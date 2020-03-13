@@ -118,17 +118,32 @@ bool Customer::operator!=(const Customer &cust)const
 
 bool Customer::returnIsValid(Transaction const *borrowing) const
 {
+    // Get the movie selection
+    Movie *selection = borrowing->getMovie();
+    
     int numBorrowed = 0;
     int numReturned = 0;
     
+    // Loop through this customers history of transactions
     for (int i = 0; i < history.size(); i++)
     {
-        // transcation is ==
-            // numReturned++;
-        // transcation movie is == and its a borrow
-            // numBorrowed++;
+        // If we find a transaction with their selected movie
+        if (history[i]->getMovie() == selection)
+        {
+            // If the transaction was a borrow
+            if (history[i]->getTransactionType() == 'B')
+            {
+                numBorrowed++;
+            }
+            // If the transaction was a return
+            else if (history[i]->getTransactionType() == 'R')
+            {
+                numReturned++;
+            }
+        }
     }
     
+    // the customer can return it if they borrowed it
     if ((numBorrowed + 1) == numReturned)
     {
         return true;
@@ -139,17 +154,32 @@ bool Customer::returnIsValid(Transaction const *borrowing) const
 
 bool Customer::borrowIsValid(Transaction const *returning) const
 {
+    // Get the movie selection
+    Movie *selection = returning->getMovie();
+    
     int numBorrowed = 0;
     int numReturned = 0;
     
+    // If we find a transaction with their selected movie
     for (int i = 0; i < history.size(); i++)
     {
-        // transcation is ==
-            // numBorrowed++;
-        // transcation movie is == and its a return
-            // numReturned++;
+        // If we find a transaction with their selected movie
+        if (history[i]->getMovie() == selection)
+        {
+            // If the transaction was a borrow
+            if (history[i]->getTransactionType() == 'B')
+            {
+                numBorrowed++;
+            }
+            // If the transaction was a return
+            else if (history[i]->getTransactionType() == 'R')
+            {
+                numReturned++;
+            }
+        }
     }
     
+    // the customer can borrow since they don't have it borrowed right now
     if (numBorrowed == numReturned)
     {
         return true;
