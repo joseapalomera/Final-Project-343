@@ -2,17 +2,14 @@
 //  Inventory.cpp
 //  Program4
 //
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>
 #include "Inventory.h"
 
-Inventory::Inventory()
-{
-    
-}
+Inventory::Inventory(){}
 
 Inventory::~Inventory()
 {
@@ -116,39 +113,42 @@ void Inventory::viewDramas()
 
 void Inventory::viewInventory()
 {
-    cout << "Classics:" << endl;
-    viewClassics();
-    
     cout << "Comedies:" << endl;
     viewComedies();
     
     cout << "Dramas:" << endl;
     viewDramas();
+    
+    cout << "Classics:" << endl;
+    viewClassics();
+    
 }
 
+// HAS WEIRD CASE
 bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Movie *&selection)
 {
     // Searching through the classic movie vector to find the desired movie
     for (int i = 0; i < classics.size(); i++)
     {
-        // If we locate the desired movie
-        if (releaseMonth == classics[i].getReleaseMonth() && releaseYear == classics[i].getReleaseYear() && majorActor == classics[i].getMajorActor())
-        {
-            // Return false if it is out of stock
-            if (classics[i].getStock() == 0)
+            // If we locate the desired movie
+            if (releaseMonth == classics[i].getReleaseMonth() && releaseYear == classics[i].getReleaseYear()
+                && majorActor == classics[i].getMajorActor())
             {
-                cerr << "ERROR: Desired movie out of stock" << endl;
-                findClassicDuplicate(classics[i].getTitle(), classics[i].getMajorActor());
-                return false;
+                // Return false if it is out of stock
+                if (classics[i].getStock() == 0)
+                {
+                    cerr << "ERROR: Desired movie out of stock" << endl;
+                    findClassicDuplicate(classics[i].getTitle(), classics[i].getMajorActor());
+                    // FIND OUT IF THERE IS ANOTHER ONE
+                    return false;
+                }
+                // In stock so we send the desired movie over and return true
+                selection = &classics[i];
+                return true;
             }
-            
-            // In stock so we send the desired movie over and return true
-            selection = &classics[i];
-            return true;
         }
-    }
     // No such movie in the database
-    cout << "ERROR: Movie not found in database" << endl;
+        cerr << "ERROR: Movie not found in database" << endl;
     return false;
 }
 

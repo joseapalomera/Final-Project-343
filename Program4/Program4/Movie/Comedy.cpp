@@ -2,8 +2,8 @@
 //  Comedy.cpp
 //  Program4
 //
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>

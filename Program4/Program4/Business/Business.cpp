@@ -2,8 +2,8 @@
 //  Business.cpp
 //  Program4
 //
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>
@@ -141,25 +141,81 @@ void Business::executeCommands(string const &commandData)
                     // Drama movie
                     case 'D':
                     {
-                        // store release month, year, major actor
-                        // Drama temp;
-                        // call findDramaMovie with given information
-                        // if it returned true then make Borrow object
-                            // if borrow is valid then add to history of customer
-                        // else error message should already be outputted
+                        string director, title;
+                        
+                        commandsFile.ignore(1);
+                        getline(commandsFile, director, ',');
+                        
+                        commandsFile.ignore(1);
+                        
+                        getline(commandsFile, title, ',');
+                        
+                        // Checking if their movie choice is valid and getting it if it is true
+                        Movie *selection;
+                        bool validMovie = movies.findDramaMovie(director, title, selection);
+                        
+                         // If the movie is in the database
+                        if(validMovie)
+                        {
+                            // Creating a transaction object
+                            Transaction *t = new Borrow('B', selection);
+                            
+                            // Completing the transaction and adding to the customers history for a valid transaction
+                            if(customer->borrowIsValid('D', t))
+                            {
+                                t->doTrans();
+                                customer->addTransaction(t);
+                            }
+                            // Dellocating data for an invalid return
+                            else
+                            {
+                                delete t;
+                                t = nullptr;
+                            }
+                        }
+                         
                         break;
                     }
                     // Comedy movie
                     case 'F':
                     {
-                        // store release month, year, major actor
-                        // Comedu temp;
-                        // call findComedyMovie with given information
-                        // if it returned true then make Borrow object
-                            // if borrow is valid then add to history of customer
-                        // else error message should already be outputted
+                        string title;
+                        
+                        commandsFile.ignore(1);
+                        getline(commandsFile, title, ',');
+                        
+                        commandsFile.ignore(1);
+                        
+                        int releaseYear;
+                        commandsFile >> releaseYear;
+                        
+                        // Checking if their movie choice is valid and getting it if it is true
+                        Movie *selection;
+                        bool validMovie = movies.findComedyMovie(title, releaseYear, selection);
+                        
+                         // If the movie is in the database
+                        if(validMovie)
+                        {
+                            // Creating a transaction object
+                            Transaction *t = new Borrow('B', selection);
+                            
+                             // Completing the transaction and adding to the customers history for a valid transaction
+                            if(customer->borrowIsValid('F', t))
+                            {
+                                t->doTrans();
+                                customer->addTransaction(t);
+                            }
+                            // Dellocating data for an invalid return
+                            else
+                            {
+                                delete t;
+                                t = nullptr;
+                            }
+                        }
+                         
                         break;
                     }
+                    //Default
                     default:
                     {
                         cerr << "ERROR: Invalid movie type" << endl;
@@ -196,61 +252,115 @@ void Business::executeCommands(string const &commandData)
                     // Classic movie
                     case 'C':
                     {
-                    int releaseMonth, releaseYear;
-                    commandsFile >> releaseMonth >> releaseYear;
+                        int releaseMonth, releaseYear;
+                        commandsFile >> releaseMonth >> releaseYear;
                     
-                    string firstName, lastName;
-                    commandsFile >> firstName >> lastName;
+                        string firstName, lastName;
+                        commandsFile >> firstName >> lastName;
                     
-                    string majorActor = firstName + " " + lastName;
+                        string majorActor = firstName + " " + lastName;
                     
-                    // Checking if their movie choice is valid and getting it if it is true
-                    Movie *selection;
-                    bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, selection);
+                        // Checking if their movie choice is valid and getting it if it is true
+                        Movie *selection;
+                        bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, selection);
                     
-                    // If the movie is in the database
-                    if (validMovie)
-                    {
-                        // Creating a transaction object
-                        Transaction *t = new Return('R', selection);
+                        // If the movie is in the database
+                        if (validMovie)
+                        {
+                            // Creating a transaction object
+                            Transaction *t = new Return('R', selection);
                         
-                        // Completing the transaction and adding to the customers history for a valid transaction
-                        if (customer->returnIsValid('C', t))
-                        {
-                            t->doTrans();
-                            customer->addTransaction(t);
+                            // Completing the transaction and adding to the customers history for a valid transaction
+                            if (customer->returnIsValid('C', t))
+                            {
+                                t->doTrans();
+                                customer->addTransaction(t);
+                            }
+                            // Dellocating data for an invalid return
+                            else
+                            {
+                                delete t;
+                                t = NULL;
+                            }
                         }
-                        // Dellocating data for an invalid return
-                        else
-                        {
-                            delete t;
-                            t = NULL;
-                        }
-                    }
                         break;
                     }
                     // Drama movie
                     case 'D':
                     {
-                    // store release month, year, major actor
-                    // Drama temp;
-                    // call findDramaMovie with given information
-                    // if it returned true then make Return object
-                        // if Return is valid then add to history of customer
-                    // else error message should already be outputted
+                        string title, director;
+                        
+                        commandsFile.ignore(1);
+                        getline(commandsFile, director, ',');
+                        
+                        commandsFile.ignore(1);
+                        
+                        getline(commandsFile, title, ',');
+                        
+                        //Checking if their movie choise is valid and getting it if it is true
+                        Movie *selection;
+                        bool validMovie = movies.findDramaMovie(director, title, selection);
+                        
+                        //If the movie is in the database
+                        if(validMovie)
+                        {
+                            //Creating a transaction object
+                            Transaction *t = new Return('R', selection);
+                            
+                            //Completing the transaction and adding to the customer's history for a valid transaction
+                            if(customer->returnIsValid('D', t))
+                            {
+                                t->doTrans();
+                                customer->addTransaction(t);
+                            }
+                            //Deallocating data for an invalid return
+                            else
+                            {
+                                delete t;
+                                t = nullptr;
+                            }
+                        }
                         break;
                     }
                     // Comedy movie
                     case 'F':
                     {
-                    // store release month, year, major actor
-                    // Comedy temp;
-                    // call findComedyMovie with given information
-                    // if it returned true then make Return object
-                        // if return is valid then add to history of customer
-                    // else error message should already be outputted
+                        string title;
+                        
+                        commandsFile.ignore(1);
+                        getline(commandsFile, title, ',');
+                        
+                        commandsFile.ignore(1);
+                        
+                        int releaseYear;
+                       commandsFile >> releaseYear;
+                       
+                        //Checking if their movie choise is valid and getting it if it is true
+                       Movie *selection;
+                       bool validMovie = movies.findComedyMovie(title, releaseYear, selection);
+                       
+                         //If the movie is in the database
+                       if(validMovie)
+                       {
+                           //Creating a transaction object
+                           Transaction *t = new Return('R', selection);
+                           
+                           //Completing the transaction and adding to the customer's history for a valid transaction
+                           if(customer->returnIsValid('F', t))
+                           {
+                               t->doTrans();
+                               customer->addTransaction(t);
+                           }
+                           //Deallocating data for an invalid return
+                           else
+                           {
+                               delete t;
+                               t = nullptr;
+                           }
+                       }
                         break;
                     }
+                    //Default
                     default:
                     {
                         cerr << "ERROR: Invalid movie type " << movieType << endl;
@@ -261,7 +371,7 @@ void Business::executeCommands(string const &commandData)
             // If the command is to show the inventory of the store
             case 'I':
             {
-                viewMovies();
+                movies.viewInventory();
                 break;
             }
             // If the command is to show the history of the customer
@@ -288,17 +398,4 @@ void Business::executeCommands(string const &commandData)
             }
         }
     }
-}
-
-void Business::viewMovies()
-{
-    cout << "Outputting the store's current movies:" << endl;
-    movies.viewInventory();
-}
-
-void Business::viewCustomers()
-{
-    cout << "Outputting the store's current customers:" << endl;
-    Customer *temp = customers.getCustomer(8888);
-    cout << *temp << endl;
 }

@@ -1,10 +1,9 @@
-  
 //
 //  Transaction.cpp
 //  Program4
 //
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>
@@ -22,9 +21,9 @@ Transaction::~Transaction()
 
 Transaction::Transaction(char transactionType, int customerID, Movie *selection)
 {
-    this->transactionType = transactionType;
+    setTransactionType(transactionType);
     setCustomerID(customerID);
-    movie = selection;
+    setMovie(selection);
 }
 
 void Transaction::setCustomerID(int customerID)
@@ -59,4 +58,5 @@ Movie* Transaction::getMovie()const
 
 void Transaction::doTrans(){}
 
-void Transaction::display() const{}
+void Transaction::display()const{}
+

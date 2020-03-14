@@ -1,10 +1,21 @@
-//
-//  Classic.h
-//  Program4
-//
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
-//
+/*------------------------------------------------------------------------------
+
+Authors: Jay Brar & Jose Palomera
+CSS 343 Section C Wooyoung Kim
+
+Due Date: March 14, 2020
+Class Classic
+Description:
+
+    The Classic class is made to represent a Classic movie containing most of the
+    major details that are derived from the parent class Movie. Details include
+    a title, a director and a release date. When a customer wants to borrow a
+    Classic movie from the business, this object is called.
+ 
+    NOTE: The Classic class contains two more variables than the other
+          subclasses (Major Actor, and Release Month).
+
+------------------------------------------------------------------------------*/
 
 #ifndef Classic_h
 #define Classic_h

@@ -1,10 +1,18 @@
-//
-//  Inventory.h
-//  Program4
-//
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
-//
+/*------------------------------------------------------------------------------
+ 
+Authors: Jay Brar & Jose Palomera
+CSS 343 Section C Wooyoung Kim
+ 
+Due Date: March 14, 2020
+Class Inventory
+Description:
+ 
+    The Inventory class is representative of an Inventory that contains movies
+    and orders them in terms of what type of movie they are. The inventory class
+    is also able to provide whether or not a certain movie is in the inventory,
+    as well as show the current list of movies in the store.
+ 
+ ------------------------------------------------------------------------------*/
 
 #ifndef Inventory_h
 #define Inventory_h
@@ -46,10 +54,10 @@ public:
     void viewInventory();
     
     //Methods that retrieve movies from the inventory
-    bool findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Movie *&selection);
+    bool findClassicMovie(int month, int year, string title, Movie *&selection);
     bool findComedyMovie(string title, int releaseYear, Movie *&selection);
     bool findDramaMovie(string director, string title, Movie *&selection);
-
+    
     
 };
 #endif /* Inventory_h */
