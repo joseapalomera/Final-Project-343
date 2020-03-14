@@ -79,7 +79,7 @@ bool Movie::setReleaseMonth(int month)
     if(month < 1 || month >= 13)
     {
         //Inform the business of the invalid month
-        cout << "ERROR: Invalid month" << endl;
+        cerr << "ERROR: Invalid month" << endl;
         return false;
     }
     
@@ -152,4 +152,3 @@ void Movie::display()const
     cout << getMovieType() << ", " << getStock() << ", " << getDirector()
     << ", " << getTitle() << ", " << getReleaseYear() << endl;
 }
-

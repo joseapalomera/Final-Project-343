@@ -63,8 +63,6 @@ protected:
     string director;
     string title;
     int releaseYear;
-
 };
 
 #endif /* Movie_h */
-

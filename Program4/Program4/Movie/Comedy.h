@@ -15,7 +15,7 @@
 using namespace std;
 
 class Comedy : public Movie
-{    
+{
 public:
     //Constructors
     Comedy();

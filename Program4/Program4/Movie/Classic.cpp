@@ -67,7 +67,7 @@ bool Classic::setReleaseMonth(int month)
     if(month < 1 || month >= 13)
     {
         //Inform the business of the invalid month
-        cout << "ERROR: Invalid month " << month << endl;
+        cerr << "ERROR: Invalid month " << month << endl;
         return false;
     }
     
