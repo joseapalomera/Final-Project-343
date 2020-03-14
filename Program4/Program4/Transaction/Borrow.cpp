@@ -11,16 +11,30 @@
 
 Borrow::Borrow()
 {
-    
+    setTransactionType('B');
 }
 
 Borrow::Borrow(int customerID, Movie *movie)
 {
+    setTransactionType('B');
     setCustomerID(customerID);
     setMovie(movie);
 }
 
 Borrow::~Borrow()
 {
-    
+    movie = NULL;
 }
+
+void Borrow::doTrans()
+{
+    movie->decreaseStock();
+}
+
+void Borrow::display() const
+{
+    cout << "Borrowed: ";
+    movie->display();
+    cout << endl;
+}
+

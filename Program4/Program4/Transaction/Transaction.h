@@ -12,34 +12,30 @@
 #include <iostream>
 #include <string>
 #include "Movie.h"
-
 using namespace std;
 
 class Transaction
 {
 public:
-    //Constructors
     Transaction();
-    Transaction(int customerID, Movie *movie);
+    Transaction(char transactionType, int customerID, Movie *movie);
     ~Transaction();
     
-    //Setters
     virtual void setCustomerID(int customerID);
-    virtual void setTransactionType(char type);
-    virtual void setMovie(Movie *movie);
-    
-    //Getters
     virtual int getCustomerID()const;
+    
+    virtual void setTransactionType(char type);
     virtual char getTransactionType()const;
+    
+    virtual void setMovie(Movie *movie);
     virtual Movie* getMovie()const;
     
-    virtual void doTrans(); //Method that executes the transaction
-    virtual void display(); //Method that displays the transaction
+    virtual void doTrans();
+    virtual void display() const;
     
 protected:
     int customerID;
     Movie *movie;
     char transactionType;
 };
-
 #endif /* Transaction_h */

@@ -11,16 +11,29 @@
 
 Return::Return()
 {
-    
+    setTransactionType('R');
 }
 
 Return::Return(int customerID, Movie *movie)
 {
+    setTransactionType('R');
     setCustomerID(customerID);
     setMovie(movie);
 }
 
 Return::~Return()
 {
-    
+    movie = NULL;
+}
+
+void Return::doTrans()
+{
+    movie->increaseStock();
+}
+
+void Return::display() const
+{
+    cout << "Returned: ";
+    movie->display();
+    cout << endl;
 }

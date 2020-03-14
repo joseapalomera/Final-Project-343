@@ -1,3 +1,4 @@
+  
 //
 //  Transaction.cpp
 //  Program4
@@ -19,8 +20,9 @@ Transaction::~Transaction()
     movie = nullptr;
 }
 
-Transaction::Transaction(int customerID, Movie *selection)
+Transaction::Transaction(char transactionType, int customerID, Movie *selection)
 {
+    this->transactionType = transactionType;
     setCustomerID(customerID);
     movie = selection;
 }
@@ -55,13 +57,6 @@ Movie* Transaction::getMovie()const
     return this->movie;
 }
 
-void Transaction::doTrans()
-{
-    
-}
+void Transaction::doTrans(){}
 
-void Transaction::display()
-{
-    
-}
-
+void Transaction::display() const{}

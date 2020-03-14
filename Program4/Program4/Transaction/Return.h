@@ -21,5 +21,7 @@ public:
     Return(int customerID, Movie *movie);
     ~Return();
     
+    virtual void doTrans();
+    virtual void display() const;
 };
 #endif /* Return_h */

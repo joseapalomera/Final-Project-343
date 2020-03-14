@@ -10,7 +10,6 @@
 #define Borrow_h
 
 #include "Transaction.h"
-
 using namespace std;
 
 class Borrow : public Transaction
@@ -21,5 +20,7 @@ public:
     Borrow(int customerID, Movie *movie);
     ~Borrow();
     
+    virtual void doTrans();
+    virtual void display() const;
 };
 #endif /* Borrow_h */
