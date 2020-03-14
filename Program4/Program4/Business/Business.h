@@ -12,16 +12,15 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-
 #include "Movie.h"
 #include "Comedy.h"
 #include "Classic.h"
 #include "Drama.h"
-
 #include "HashTable.h"
 #include "Customer.h"
-
 #include "Transaction.h"
+#include "Borrow.h"
+#include "Return.h"
 #include "Inventory.h"
 
 using namespace std;
@@ -29,17 +28,16 @@ using namespace std;
 class Business
 {
 public:
-    Business(string const &movieFile);
+    Business(string const &movieData);
     ~Business();
     
     void buildCustomers(string const &customerData);
     void executeCommands(string const &commandData);
     
     void viewMovies();
+    void viewCustomers();
 private:
-    
     HashTable customers;
-    Inventory theInventory;
-    
+    Inventory movies;
 };
 #endif /* Business_h */
