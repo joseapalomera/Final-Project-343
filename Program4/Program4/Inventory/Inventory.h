@@ -28,6 +28,7 @@ private:
     vector<Comedy> comedies;
     vector<Drama> dramas;
     
+    void findClassicDuplicate(string title, string majorActor);
     void DeleteMovies();
     
 public:
@@ -45,10 +46,10 @@ public:
     void viewInventory();
     
     //Methods that retrieve movies from the inventory
-    bool findClassicMovie(int month, int year, string title, Classic &selection);
-    bool findComedyMovie(string title, int releaseYear, Comedy &selection);
-    bool findDramaMovie(string director, string title, Drama &selection);
-    
+    bool findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic *&selection);
+    bool findComedyMovie(string title, int releaseYear, Comedy *&selection);
+    bool findDramaMovie(string director, string title, Drama *&selection);
+
     
 };
 #endif /* Inventory_h */

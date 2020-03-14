@@ -126,34 +126,49 @@ void Inventory::viewInventory()
     viewDramas();
 }
 
-// HAS WEIRD CASE
-bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic &selection)
+bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic *&selection)
 {
     // Searching through the classic movie vector to find the desired movie
     for (int i = 0; i < classics.size(); i++)
     {
-            // If we locate the desired movie
-            if (releaseMonth == classics[i].getReleaseMonth() && releaseYear == classics[i].getReleaseYear()
-                && majorActor == classics[i].getMajorActor())
+        // If we locate the desired movie
+        if (releaseMonth == classics[i].getReleaseMonth() && releaseYear == classics[i].getReleaseYear() && majorActor == classics[i].getMajorActor())
+        {
+            // Return false if it is out of stock
+            if (classics[i].getStock() == 0)
             {
-                // Return false if it is out of stock
-                if (classics[i].getStock() == 0)
-                {
-                    cout << "ERROR: Movie out of stock" << endl;
-                    // FIND OUT IF THERE IS ANOTHER ONE
-                    return false;
-                }
-                // In stock so we send the desired movie over and return true
-                selection = classics[i];
-                return true;
+                cout << "ERROR: Desired movie out of stock" << endl;
+                findClassicDuplicate(classics[i].getTitle(), classics[i].getMajorActor());
+                return false;
             }
+            
+            // In stock so we send the desired movie over and return true
+            selection = classics[i];
+            return true;
         }
+    }
     // No such movie in the database
-        cout << "ERROR: Movie not found in database" << endl;
+    cout << "ERROR: Movie not found in database" << endl;
     return false;
 }
 
-bool Inventory::findComedyMovie(string title, int releaseYear, Comedy &selection)
+void Inventory::findClassicDuplicate(string title, string majorActor)
+{
+    // Searching through the classic movie vector to find an alternative movie
+    for (int i = 0; i < classics.size(); i++)
+    {
+        // If there is the same movie with a different major actor in stock display a message
+        if (title == classics[i].getTitle() && majorActor != classics[i].getMajorActor() && classics[i].getStock() > 0)
+        {
+            cout << "Alternative: ";
+            classics[i].display();
+            cout << endl;
+            return;
+        }
+    }
+}
+
+bool Inventory::findComedyMovie(string title, int releaseYear, Comedy *&selection)
 {
     // Searching through the comedy movie vector to find the desired movie
     for (int i = 0; i < comedies.size(); i++)
@@ -177,7 +192,7 @@ bool Inventory::findComedyMovie(string title, int releaseYear, Comedy &selection
     return false;
 }
 
-bool Inventory::findDramaMovie(string director, string title, Drama &selection)
+bool Inventory::findDramaMovie(string director, string title, Drama *&selection)
 {
     // Searching through the drama movie vector to find the desired movie
     for (int i = 0; i < dramas.size(); i++)
