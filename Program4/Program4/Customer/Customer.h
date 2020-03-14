@@ -20,30 +20,28 @@ class Customer
 {
 public:
     Customer();
+    Customer(int customerID, string firstName, string lastName);
     ~Customer();
     
     bool addTransaction(Transaction *t);
+    friend ostream& operator<<(ostream &out, const Customer &cust);
     
-    //Setters
     bool setData(ifstream &file);
     bool setId(int cusId);
     void setLastName(string lastN);
     void setFirstName(string firstN);
     
-    //Getters
     int getId()const;
     string getLastName()const;
     string getFirstName()const;
     
-    //Operator Overloads
     Customer& operator=(const Customer& c);
     bool operator==(const Customer& cust)const;
     bool operator!=(const Customer& cust)const;
     
-    bool returnIsValid(Transaction const *borrowing)const;
-    bool borrowIsValid(Transaction const *returning) const;
-    void viewHistory(); //Displays the customer's transaction history
-    void displayCustomer(); //Displays customer details
+    bool returnIsValid(char movieType, Transaction const *borrowing) const;
+    bool borrowIsValid(char movieType, Transaction const *returning) const;
+    void viewHistory() const;
     
 private:
     int id;
