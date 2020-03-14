@@ -23,7 +23,7 @@ void Business::buildCustomers(string const &customerData)
     ifstream customersFile(customerData);
     if (!customersFile)
     {
-        cout << "ERROR: Invalid customer input file" << endl;
+        cerr << "ERROR: Invalid customer input file" << endl;
         return;
     }
     
@@ -60,14 +60,14 @@ void Business::executeCommands(string const &commandData)
     ifstream commandsFile(commandData);
     if (!commandsFile)
     {
-        cout << "ERROR: Invalid command input file" << endl;
+        cerr << "ERROR: Invalid command input file" << endl;
         return;
     }
     
     string currentLine;
     
     // Looping throught each line in the commands data file
-    while(getline(commandsFile, currentLine)) // SKIPPING OVER FIRST LINE
+    while(getline(commandsFile, currentLine))                                // SKIPPING OVER FIRST LINE
     {
         // store in information of the first char
         char commandType, movieType;
@@ -114,15 +114,12 @@ void Business::executeCommands(string const &commandData)
                         string majorActor = firstName + " " + lastName;
                         
                         // Checking if their movie choice is valid and getting it if it is true
-                        Classic *movie;
-                        bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, movie);
+                        Movie *selection;
+                        bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, selection);
                         
                         // If the movie is in the database
                         if (validMovie)
                         {
-                            // Creating Movie container for the classic movie object
-                            Movie *selection = movie;
-                            
                             // Creating a transaction object
                             Transaction *t = new Borrow('B', selection);
                             
@@ -165,7 +162,7 @@ void Business::executeCommands(string const &commandData)
                     }
                     default:
                     {
-                        cout << "ERROR: Invalid movie type" << endl;
+                        cerr << "ERROR: Invalid movie type" << endl;
                     }
                 }
                 break;
@@ -208,15 +205,12 @@ void Business::executeCommands(string const &commandData)
                     string majorActor = firstName + " " + lastName;
                     
                     // Checking if their movie choice is valid and getting it if it is true
-                    Classic *movie;
-                    bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, movie);
+                    Movie *selection;
+                    bool validMovie = movies.findClassicMovie(releaseMonth, releaseYear, majorActor, selection);
                     
                     // If the movie is in the database
                     if (validMovie)
                     {
-                        // Creating Movie container for the classic movie object
-                        Movie *selection = movie;
-                        
                         // Creating a transaction object
                         Transaction *t = new Return('R', selection);
                         
@@ -259,7 +253,7 @@ void Business::executeCommands(string const &commandData)
                     }
                     default:
                     {
-                        cout << "ERROR: Invalid movie type" << endl;
+                        cerr << "ERROR: Invalid movie type " << movieType << endl;
                     }
                 }
                 break;
@@ -290,7 +284,7 @@ void Business::executeCommands(string const &commandData)
             }
             default:
             {
-                cout << "ERROR: Invalid command type " << commandType << endl;
+                cerr << "ERROR: Invalid command type " << commandType << endl;
             }
         }
     }
