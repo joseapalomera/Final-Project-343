@@ -1,10 +1,18 @@
-//
-//  Comedy.h
-//  Program4
-//
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
-//
+/*------------------------------------------------------------------------------
+
+Authors: Jay Brar & Jose Palomera
+CSS 343 Section C Wooyoung Kim
+
+Due Date: March 14, 2020
+Class Comedy
+Description:
+
+    The Comedy class is made to represent a Comedy movie containing most of the
+    major details that are derived from the parent class Movie. Details include
+    a title, a director and a release date. When a customer wants to borrow a
+    Comedy movie from the business, this object is called.
+
+------------------------------------------------------------------------------*/
 
 #ifndef Comedy_h
 #define Comedy_h
@@ -15,7 +23,7 @@
 using namespace std;
 
 class Comedy : public Movie
-{
+{    
 public:
     //Constructors
     Comedy();

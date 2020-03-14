@@ -1,11 +1,19 @@
-//
-//  Movie.h
-//  Program4
-//
-//  Created by Gurjepaul Brar on 3/3/20.
-//  Copyright © 2020 Gurjepaul Brar. All rights reserved.
-//
+/*------------------------------------------------------------------------------
 
+Authors: Jay Brar & Jose Palomera
+CSS 343 Section C Wooyoung Kim
+
+Due Date: March 14, 2020
+Class Movie
+Description:
+
+    The Movie class is made to represent a basic movie and all the pieces
+    of data that includes with it. This class contains details like the
+    stock, the director's name, the title, the release date and etc.
+    This Movie class is also the parent class of the subclasses Classic,
+    Comedy, and Drama.
+
+------------------------------------------------------------------------------*/
 #ifndef Movie_h
 #define Movie_h
 
@@ -63,6 +71,8 @@ protected:
     string director;
     string title;
     int releaseYear;
+
 };
 
 #endif /* Movie_h */
+

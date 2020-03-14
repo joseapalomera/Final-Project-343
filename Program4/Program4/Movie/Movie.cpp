@@ -2,8 +2,8 @@
 //  Movie.cpp
 //  Program4
 //
-//  Created by Gurjepaul Brar on 3/3/20.
-//  Copyright © 2020 Gurjepaul Brar. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>
@@ -79,7 +79,7 @@ bool Movie::setReleaseMonth(int month)
     if(month < 1 || month >= 13)
     {
         //Inform the business of the invalid month
-        cerr << "ERROR: Invalid month" << endl;
+        cerr << "ERROR: Invalid month" <<endl;
         return false;
     }
     
@@ -152,3 +152,4 @@ void Movie::display()const
     cout << getMovieType() << ", " << getStock() << ", " << getDirector()
     << ", " << getTitle() << ", " << getReleaseYear() << endl;
 }
+

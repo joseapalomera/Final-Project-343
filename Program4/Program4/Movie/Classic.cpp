@@ -2,8 +2,8 @@
 //  Classic.cpp
 //  Program4
 //
-//  Created by Jose Palomera on 3/3/20.
-//  Copyright © 2020 Jose Palomera. All rights reserved.
+//  Created by Jay Brar & Jose Palomera
+//  Copyright © 2020 Jay Brar & Jose Palomera. All rights reserved.
 //
 
 #include <stdio.h>
@@ -67,7 +67,7 @@ bool Classic::setReleaseMonth(int month)
     if(month < 1 || month >= 13)
     {
         //Inform the business of the invalid month
-        cerr << "ERROR: Invalid month " << month << endl;
+        cerr << "ERROR: Invalid month " << month << endl;   
         return false;
     }
     
