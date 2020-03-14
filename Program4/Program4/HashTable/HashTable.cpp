@@ -12,7 +12,6 @@
 HashTable::HashTable()
 {
 
-    //For loop establishes the array by making every head null
     for(int i = 0; i < sizeOfTable; i++)
     {
         table[i].head = nullptr;
@@ -27,22 +26,16 @@ HashTable::~HashTable()
 
 bool HashTable::addCustomer(Customer *cust)
 {
-    //Retrieves the hash number to see where the customer will be placed
-    //The hash number is also known as the index. Which can represent
-    //the index the Customer will stay in the array
     int index = cust->getId() % hashTable;
     
-    //Create a new item with the Customer
     item *temp = new item;
     temp->c = cust;
     temp->next = nullptr;
     
-    //If the index in the array is null, then place the item in this spot
     if(table[index].head == nullptr)
     {
         table[index].head = temp;
     }
-    
     else
     {
         item *ptr = table[index].head;
@@ -51,7 +44,7 @@ bool HashTable::addCustomer(Customer *cust)
         {
             if(cust->getId() == ptr->c->getId())
             {
-                cout << "Duplicate Exists: Customer " << cust->getId() << endl;
+                cerr << "ERROR: Customer " << cust->getId() << " already in system" << endl;
                 temp->c = nullptr;
                 delete temp;
                 temp = nullptr;
@@ -77,7 +70,8 @@ Customer* HashTable::getCustomer(int custId)
     {
         return nullptr;
     }
-    else{
+    else
+    {
         item *cur = table[index].head;
         
         while(cur != nullptr)
