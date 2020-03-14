@@ -52,8 +52,7 @@ bool Customer::setId(int cusId)
         this->id = cusId;
         return true;
     }
-    
-    cout << "ERROR: Invalid ID " << cusId << ". Customer not created" << endl;
+    cerr << "ERROR: Invalid ID " << cusId << ". Customer not created" << endl;
     return false;
 }
 
@@ -105,9 +104,12 @@ Customer& Customer::operator=(const Customer &c)
 bool Customer::operator==(const Customer &cust)const
 {
     
-    if(this->getId() == cust.getId()){
-        if(this->getLastName() == cust.getLastName()){
-            if(this->getFirstName() == cust.getFirstName()){
+    if(this->getId() == cust.getId())
+    {
+        if(this->getLastName() == cust.getLastName())
+        {
+            if(this->getFirstName() == cust.getFirstName())
+            {
                 return true;
             }
         }
@@ -157,7 +159,7 @@ bool Customer::returnIsValid(char movieType, Transaction const *borrowing) const
         return true;
     }
     
-    cout << "ERROR: The selected movie cannot be returned" << endl;
+    cerr << "ERROR: The selected movie cannot be returned" << endl;
     return false;
 }
 
@@ -197,7 +199,7 @@ bool Customer::borrowIsValid(char movieType, Transaction const *returning) const
         return true;
     }
     
-    cout << "ERROR: The selected movie cannot be borrowed" << endl;
+    cerr << "ERROR: The selected movie cannot be borrowed" << endl;
     return false;
 }
 
