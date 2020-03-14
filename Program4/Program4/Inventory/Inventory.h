@@ -46,9 +46,9 @@ public:
     void viewInventory();
     
     //Methods that retrieve movies from the inventory
-    bool findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic *&selection);
-    bool findComedyMovie(string title, int releaseYear, Comedy *&selection);
-    bool findDramaMovie(string director, string title, Drama *&selection);
+    bool findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Movie *&selection);
+    bool findComedyMovie(string title, int releaseYear, Movie *&selection);
+    bool findDramaMovie(string director, string title, Movie *&selection);
 
     
 };

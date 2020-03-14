@@ -25,7 +25,7 @@ void Inventory::buildInventory(string const &movieFile)
     ifstream movies(movieFile);
     if(!movies)
     {
-        cout << "ERROR: Invalid input file" << endl;
+        cerr << "ERROR: Invalid input file" << endl;
         return;
     }
     //While the file still has lines
@@ -71,7 +71,7 @@ void Inventory::buildInventory(string const &movieFile)
             //If the letter is something else
             default:{
                 //Alert the business of an invalid movie
-                cout << "ERROR: Invalid Movie Type: " << type << endl;
+                cerr << "ERROR: Invalid movie type " << type << endl;
                 movies.ignore(1000000, '\n');
                 break;
             }
@@ -126,7 +126,7 @@ void Inventory::viewInventory()
     viewDramas();
 }
 
-bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Classic *&selection)
+bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string majorActor, Movie *&selection)
 {
     // Searching through the classic movie vector to find the desired movie
     for (int i = 0; i < classics.size(); i++)
@@ -137,13 +137,13 @@ bool Inventory::findClassicMovie(int releaseMonth, int releaseYear, string major
             // Return false if it is out of stock
             if (classics[i].getStock() == 0)
             {
-                cout << "ERROR: Desired movie out of stock" << endl;
+                cerr << "ERROR: Desired movie out of stock" << endl;
                 findClassicDuplicate(classics[i].getTitle(), classics[i].getMajorActor());
                 return false;
             }
             
             // In stock so we send the desired movie over and return true
-            selection = classics[i];
+            selection = &classics[i];
             return true;
         }
     }
@@ -168,7 +168,7 @@ void Inventory::findClassicDuplicate(string title, string majorActor)
     }
 }
 
-bool Inventory::findComedyMovie(string title, int releaseYear, Comedy *&selection)
+bool Inventory::findComedyMovie(string title, int releaseYear, Movie *&selection)
 {
     // Searching through the comedy movie vector to find the desired movie
     for (int i = 0; i < comedies.size(); i++)
@@ -179,20 +179,20 @@ bool Inventory::findComedyMovie(string title, int releaseYear, Comedy *&selectio
             // Return false if it is out of stock
             if (comedies[i].getStock() == 0)
             {
-                cout << "ERROR: Movie out of stock" << endl;
+                cerr << "ERROR: Movie out of stock" << endl;
                 return false;
             }
             // In stock so we send the desired movie over and return true
-            selection = comedies[i];
+            selection = &comedies[i];
             return true;
         }
     }
     // No such movie in the database
-    cout << "ERROR: Movie not found in database" << endl;
+    cerr << "ERROR: Movie not found in database" << endl;
     return false;
 }
 
-bool Inventory::findDramaMovie(string director, string title, Drama *&selection)
+bool Inventory::findDramaMovie(string director, string title, Movie *&selection)
 {
     // Searching through the drama movie vector to find the desired movie
     for (int i = 0; i < dramas.size(); i++)
@@ -203,16 +203,16 @@ bool Inventory::findDramaMovie(string director, string title, Drama *&selection)
             // Return false if it is out of stock
             if (dramas[i].getStock() == 0)
             {
-                cout << "ERROR: Movie out of stock" << endl;
+                cerr << "ERROR: Movie out of stock" << endl;
                 return false;
             }
             // In stock so we send the desired movie over and return true
-            selection = dramas[i];
+            selection = &dramas[i];
             return true;
         }
     }
     // No such movie in the database
-    cout << "ERROR: Movie not found in database" << endl;
+    cerr << "ERROR: Movie not found in database" << endl;
     return false;
 }
 
