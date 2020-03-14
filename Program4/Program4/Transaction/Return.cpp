@@ -35,5 +35,4 @@ void Return::display() const
 {
     cout << "Returned: ";
     movie->display();
-    cout << endl;
 }

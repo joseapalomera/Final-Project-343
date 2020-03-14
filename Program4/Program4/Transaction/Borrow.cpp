@@ -35,6 +35,5 @@ void Borrow::display() const
 {
     cout << "Borrowed: ";
     movie->display();
-    cout << endl;
 }
 
