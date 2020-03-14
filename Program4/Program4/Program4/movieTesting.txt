@@ -1,9 +1,0 @@
-C, 5, Victor Fleming, The Wizard of Oz, Judy Garland 8 1939
-C, 5, Alfred Hitchcock, Psycho, Anthony Perkins 9 1960
-C, 5, Francis Ford Coppola, The Godfather, Al Pacino 3 1972
-F, 5, Phil Lord & Chris Miller, 21 Jump Street, 2012
-F, 5, Greg Mottola, Superbad, 2007
-F, 5, Michael Tiddes, A Haunted House, 2013
-D, 5, Todd Phillips, Joker, 2019
-D, 5, Sam Mendes, 1917, 2019
-D, 5, Steve McQueen, 12 Years a Slave, 2013
