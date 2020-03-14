@@ -151,15 +151,13 @@ bool Customer::returnIsValid(char movieType, Transaction const *borrowing) const
         }
     }
     
-    cout << numBorrowed << endl;
-    cout << numReturned << endl;
-    
     // the customer can return it if they borrowed it
     if ((numReturned + 1) == numBorrowed)
     {
         return true;
     }
     
+    cout << "ERROR: The selected movie cannot be returned" << endl;
     return false;
 }
 
@@ -199,12 +197,13 @@ bool Customer::borrowIsValid(char movieType, Transaction const *returning) const
         return true;
     }
     
+    cout << "ERROR: The selected movie cannot be borrowed" << endl;
     return false;
 }
 
 void Customer::viewHistory() const
 {
-    cout << "Outputting history (Earliest to Latest) for customer " << id << endl;
+    cout << "Customer " << id << " Transaction History (Earliest to Latest):" << endl;
     
     // Outputting all the Transaction objects in the history vector
     for (int i = 0; i < history.size(); i++)
