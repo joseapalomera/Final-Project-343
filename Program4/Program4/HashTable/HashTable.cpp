@@ -9,6 +9,16 @@
 #include <stdio.h>
 #include "HashTable.h"
 
+/*-----------------------------------HashTable---------------------------------
+ HashTable:
+ 
+    This is a basic constructor that initializes every head in every index of
+    the array.
+ 
+    Post Conditions:
+    Every head in the hashtable is set to null.
+ 
+ ----------------------------------------------------------------------------*/
 HashTable::HashTable()
 {
 
@@ -19,12 +29,35 @@ HashTable::HashTable()
     }
 
 }
+/*------------------------------~HashTable-----------------------------------
+~HashTable:
+ 
+    This is a basic destructor that empties/deallocates memory used for the
+    hash table. The method calls the helper method emptyTable to free
+    the memory.
 
+    Post Condition:
+    Every node and item in the hash table is deleted.
+
+----------------------------------------------------------------------------*/
 HashTable::~HashTable()
 {
     this->emptyTable();
 }
+/*-------------------------------addCustomer---------------------------------
+addCustomer:
 
+    This method inserts a new Customer to the hash table by creating a hash
+    key and inserting the customer in the specific index.
+    
+    Pre-Conditions:
+    Customer *cust - A customer object has been created and is wanting to be
+        inserted into the hash table.
+ 
+    Post Conditions:
+    A Customer object has been inserted into the hash table.
+ 
+----------------------------------------------------------------------------*/
 bool HashTable::addCustomer(Customer *cust)
 {
     //Retrieves the hash number to see where the customer will be placed
@@ -73,7 +106,21 @@ bool HashTable::addCustomer(Customer *cust)
     
     return true;
 }
+/*-----------------------------------getCustomer-----------------------------
+getCustomer:
     
+    This method allows for the hash table to retrieve a customer object
+    by creating a hash key and then directly accessing the Customer in the
+    table by using this hash key.
+ 
+    Pre-Conditions:
+    int custId - Represents the customer id that comes from the customer
+        that we want to retrieve.
+ 
+    Post Conditions:
+    A customer object is returned to be changed if desired from the business.
+ 
+----------------------------------------------------------------------------*/
 Customer* HashTable::getCustomer(int custId)
 {
     //Create the hash value for the customer we want
@@ -106,7 +153,16 @@ Customer* HashTable::getCustomer(int custId)
     //Return null if we did not find the customer in the hash table
     return nullptr;
 }
+/*------------------------------------emptyTable------------------------------
+emptyTable:
 
+    This method acts as a helper method that frees memory in the hashtable
+    by deleting every node and item in the hash table.
+ 
+    Post Condition:
+    Every node and item in the hash table is deleted.
+
+----------------------------------------------------------------------------*/
 void HashTable::emptyTable()
 {
     //Loop through the hashtable

@@ -9,11 +9,33 @@
 #include <stdio.h>
 #include "Drama.h"
 
+/*---------------------------------Drama------------------------------------
+ Drama:
+ 
+    This is a basic constructor that sets the movie type to D and creates a
+    new Drama object
+
+----------------------------------------------------------------------------*/
 Drama::Drama()
 {
     setMovieType('D');
 }
+/*---------------------------------Drama------------------------------------
+ Drama:
+ 
+    This is a basic constructor that sets the variables from the parameters
+    given to the method.
 
+    Pre-Condition:
+    int stock - Represents the amount of movies the object has
+    string director - Represents the directors name
+    string title - Represents the title of the movie
+    int releaseYear - Represents the release year of the movie
+ 
+    Post Condition:
+    Sets the variables to the values of the parameters
+
+----------------------------------------------------------------------------*/
 Drama::Drama(int stock, string director, string title, int releaseYear)
 {
     setMovieType('D');
@@ -22,12 +44,26 @@ Drama::Drama(int stock, string director, string title, int releaseYear)
     setTitle(title);
     setReleaseYear(releaseYear);
 }
+/*---------------------------------~Drama------------------------------------
+ ~Drama:
+ 
+    This is a basic destructor for the Drama object
 
-Drama::~Drama()
-{
-    
-}
+----------------------------------------------------------------------------*/
+Drama::~Drama(){}
+/*---------------------------------setData-----------------------------------
+ setData:
 
+    This method is a setter method that takes in the file that contains
+    the information for Drama object and it sets the variables for the object
+ 
+    Pre-Condition:
+    ifstream &file - Represents the file that we are wanting to read from
+ 
+    Post Condition:
+    Sets the data from the file to the Drama object
+
+----------------------------------------------------------------------------*/
 void Drama::setData(ifstream &file)
 {
     int stock, releaseYear;
@@ -46,7 +82,19 @@ void Drama::setData(ifstream &file)
     setTitle(title);
     setReleaseYear(releaseYear);
 }
+/*-------------------------------operator==-----------------------------------
+ operator==:
+ 
+    This is an == operator overload that compares the current Drama movie
+    to another drama movie.
 
+    Pre-Condition:
+    Movie &dram - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the Drama movies are equal or not
+
+----------------------------------------------------------------------------*/
 bool Drama::operator==(const Movie& dram)const
 {
     //If both stocks are the same
@@ -70,12 +118,37 @@ bool Drama::operator==(const Movie& dram)const
     //Return false if one of the variables are different
     return false;
 }
+/*------------------------------operator!=-----------------------------------
+ operator!=:
+ 
+    This is an != operator overload that compares the current Drama movie
+    to another drama movie.
 
+    Pre-Condition:
+    Movie &dram - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the Drama movies are not equal.
+
+----------------------------------------------------------------------------*/
 bool Drama::operator!=(const Movie& dram)const
 {
      return !(*this == dram);
 }
+/*-------------------------------operator>-----------------------------------
+ operator>:
+ 
+    This is a > operator overload that checks to see if the current Drama
+    movie is greater than the other Drama
 
+    Pre-Condition:
+    Movie &dram - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the current Drama movies is greater than the other
+    Drama object.
+
+----------------------------------------------------------------------------*/
 bool Drama::operator>(const Movie& dram) const
 {
     //If the current director is greater than the other movie
@@ -111,7 +184,20 @@ bool Drama::operator>(const Movie& dram) const
         return false;
     }
 }
+/*-------------------------------operator<-----------------------------------
+ operator<:
+ 
+    This is a < operator overload that checks to see if the current Drama
+    movie is less than the other Drama
 
+    Pre-Condition:
+    Movie &dram - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the current Drama movies is less than the other
+    Drama object.
+
+----------------------------------------------------------------------------*/
 bool Drama::operator<(const Movie& dram) const
 {
     //If the current director is less than the other movie
@@ -147,7 +233,20 @@ bool Drama::operator<(const Movie& dram) const
          return false;
      }
 }
+/*---------------------------------operator=---------------------------------
+ operator=:
+ 
+    This is an = operator overload that creates a copy of another Drama object
+    and establishes the information to the current Drama object.
 
+    Pre-Condition:
+    Movie &d - Represents the movie that we want to copy information from
+ 
+    Post Condition:
+    Returns a copy of the movie that was passed in and assigns it to the
+    current Drama object
+
+----------------------------------------------------------------------------*/
 Movie* Drama::operator=(const Movie &d)
 {
     setStock(d.getStock());
@@ -157,7 +256,12 @@ Movie* Drama::operator=(const Movie &d)
     
     return this;
 }
+/*-------------------------------display------------------------------------
+ display:
+ 
+    This method displays the contents of the Drama object.
 
+----------------------------------------------------------------------------*/
 void Drama::display()
 {
     //Displays the credentials of a Drama movie
