@@ -9,11 +9,35 @@
 #include <stdio.h>
 #include "Classic.h"
 
+/*-------------------------------Classic-------------------------------------
+ Drama:
+ 
+    This is a basic constructor that sets the movie type to C and creates a
+    new Classic object
+
+----------------------------------------------------------------------------*/
 Classic::Classic()
 {
     setMovieType('C');
 }
+/*-------------------------------Classic--------------------------------------
+ Classic:
+ 
+    This is a basic constructor that sets the variables from the parameters
+    given to the method.
 
+    Pre-Condition:
+    int stock - Represents the amount of movies the object has
+    string director - Represents the directors name
+    string title - Represents the title of the movie
+    string majorActor - Represents the major actor for the movie
+    int releaseMonth - Represents the release month for the movie
+    int releaseYear - Represents the release year of the movie
+ 
+    Post Condition:
+    Sets the variables to the values of the parameters
+
+----------------------------------------------------------------------------*/
 Classic::Classic(int stock, string director, string title, string majorActor, int releaseMonth,  int releaseYear)
 {
     setMovieType('C');
@@ -24,12 +48,29 @@ Classic::Classic(int stock, string director, string title, string majorActor, in
     setReleaseMonth(releaseMonth);
     setReleaseYear(releaseYear);
 }
+/*--------------------------------~Classic-----------------------------------
+ ~Drama:
+ 
+    This is a basic destructor for the Classic object
 
+----------------------------------------------------------------------------*/
 Classic::~Classic()
 {
     
 }
+/*--------------------------------setData------------------------------------
+ setData:
 
+    This method is a setter method that takes in the file that contains
+    the information for Classic object and it sets the variables for the object
+ 
+    Pre-Condition:
+    ifstream &file - Represents the file that we are wanting to read from
+ 
+    Post Condition:
+    Sets the data from the file to the Classic object
+
+----------------------------------------------------------------------------*/
 void Classic::setData(ifstream &file)
 {
     int stock, releaseMonth, releaseYear;
@@ -50,17 +91,45 @@ void Classic::setData(ifstream &file)
     setReleaseMonth(releaseMonth);
     setReleaseYear(releaseYear);
 }
+/*----------------------------setMajorActor----------------------------------
+ setMajorActor:
 
+    This is a setter method that sets the major actor for the Classic object.
+
+    Pre-Conditions:
+    string majorActor - represents the major actor's name for the movie.
+ 
+    Post Condition:
+    Sets the major actor to the parameter passed in.
+
+----------------------------------------------------------------------------*/
 void Classic::setMajorActor(string majorActor)
 {
     this->majorActor = majorActor;
 }
+/*------------------------------getMajorActor--------------------------------
+ getMajorActor:
+ 
+    This is a getter method that returns the major actors name for the
+    Classic object.
 
+----------------------------------------------------------------------------*/
 string Classic::getMajorActor()const
 {
     return this->majorActor;
 }
+/*-------------------------------setReleaseMonth-----------------------------
+ setReleaseMonth:
 
+    This is a setter method that sets the releaseMonth of the Classic object.
+
+    Pre-Conditions:
+    int month - represents the release month of the Classic object.
+ 
+    Post Condition:
+    Sets the release month to the parameter passed in.
+
+----------------------------------------------------------------------------*/
 bool Classic::setReleaseMonth(int month)
 {
     //if the month is out of range
@@ -74,12 +143,29 @@ bool Classic::setReleaseMonth(int month)
     this->releaseMonth = month;
     return true;
 }
+/*--------------------------------getReleaseMonth----------------------------
+ getReleaseMonth:
+ 
+    This is a getter method that returns the release month for the Classic object.
 
+----------------------------------------------------------------------------*/
 int Classic::getReleaseMonth()const
 {
     return this->releaseMonth;
 }
+/*-------------------------------operator==-----------------------------------
+ operator==:
+ 
+    This is an == operator overload that compares the current Classic movie
+    to another Classic movie.
 
+    Pre-Condition:
+    Movie &cla - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the Classic movies are equal or not
+
+----------------------------------------------------------------------------*/
 bool Classic::operator==(const Movie& cla)const
 {
     //If both stocks are the same
@@ -111,12 +197,38 @@ bool Classic::operator==(const Movie& cla)const
     //Return false if one of the variables are different
     return false;
 }
+/*------------------------------operator!=-----------------------------------
+ operator!=:
+ 
+    This is an != operator overload that compares the current Classic movie
+    to another Classic movie.
 
+    Pre-Condition:
+    Movie &cla - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the Classic movies are not equal.
+
+----------------------------------------------------------------------------*/
 bool Classic::operator!=(const Movie& cla)const
 {
      return !(*this == cla);
 }
+/*-------------------------------operator>-----------------------------------
+ operator>:
+ 
+    This is a > operator overload that checks to see if the current Classic
+    movie is greater than the other Classic
 
+    Pre-Condition:
+    Movie &cla - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the current Classic movies is greater than the other
+    Classic object.
+
+
+----------------------------------------------------------------------------*/
 bool Classic::operator>(const Movie& cla) const
 {
     //If the current release year is greater than the other movie
@@ -161,7 +273,20 @@ bool Classic::operator>(const Movie& cla) const
         return false;
     }
 }
+/*-------------------------------operator<-----------------------------------
+ operator<:
+ 
+    This is a < operator overload that checks to see if the current Classic
+    movie is less than the other Classic
 
+    Pre-Condition:
+    Movie &cla - Represents the movie that we want to compare to
+ 
+    Post Condition:
+    Returns whether or not the current Classic movies is less than the other
+    Classic object.
+
+----------------------------------------------------------------------------*/
 bool Classic::operator<(const Movie& cla) const
 {
     //If the current release year is less than the other movie
@@ -206,7 +331,20 @@ bool Classic::operator<(const Movie& cla) const
          return false;
      }
 }
+/*---------------------------------operator=---------------------------------
+ operator=:
+ 
+    This is an = operator overload that creates a copy of another Classic object
+    and establishes the information to the current Classic object.
 
+    Pre-Condition:
+    Movie &c - Represents the movie that we want to copy information from
+ 
+    Post Condition:
+    Returns a copy of the movie that was passed in and assigns it to the
+    current Classic object
+
+----------------------------------------------------------------------------*/
 Movie* Classic::operator=(const Movie &c)
 {
     //Replaces the current Classic movie
@@ -220,7 +358,12 @@ Movie* Classic::operator=(const Movie &c)
     
     return this;
 }
+/*-----------------------------------display---------------------------------
+ display:
+ 
+    This method displays the contents of the Classic object.
 
+----------------------------------------------------------------------------*/
 void Classic::display()
 {
     //Displays the Classic movie object's credentials

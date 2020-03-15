@@ -9,28 +9,73 @@
 #include <stdio.h>
 #include "Return.h"
 
+/*-----------------------------------Return-----------------------------------
+ Return:
+
+    A basic constructor that sets the Transaction type to R.
+ 
+    Post Condition:
+    Sets the transaction type for Borrow as R and a Return object is created.
+
+----------------------------------------------------------------------------*/
 Return::Return()
 {
     setTransactionType('R');
 }
+/*----------------------------------Return------------------------------------
+ Return:
 
+    A basic constructor that sets the values from the parameters to the
+    private variables of the class.
+ 
+    Pre-Conditions:
+    int customerID - Represents the customer that the transaction belongs to
+    Movie *movie - Represents the movie that is being returned
+ 
+    Post Conditions:
+    The instance variables are assigned to the parameters passed in
+    and a new Return transaction object is created
+
+
+----------------------------------------------------------------------------*/
 Return::Return(int customerID, Movie *movie)
 {
     setTransactionType('R');
     setCustomerID(customerID);
     setMovie(movie);
 }
+/*---------------------------------~Return------------------------------------
+ ~Return:
+ 
+    A basic destructor that sets the Movie variable to null
 
+    Post Condition:
+    The movie in Return is set to null
+
+----------------------------------------------------------------------------*/
 Return::~Return()
 {
     this->movie = nullptr;
 }
+/*-----------------------------------doTrans---------------------------------
+ doTrans:
 
+    This method increases the stock of the movie in the transaction.
+ 
+    Post Condition:
+    The movie that is being returned increases in stock.
+
+----------------------------------------------------------------------------*/
 void Return::doTrans()
 {
     this->movie->increaseStock();
 }
+/*----------------------------------display----------------------------------
+ display:
+ 
+    Method that displays the borrowed movie and the details that come with it.
 
+----------------------------------------------------------------------------*/
 void Return::display()const
 {
     cout << "Returned: ";
